@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{8137748e-d4fb-4eeb-a871-d20e41b0fb50}" Title="Cafaholic" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Abhishek Dey" Description="Sample description" Publisher="Cafaholic" PublisherID="{f8771ca3-825a-45fd-aa5e-8a8561f44f9c}">
+  <App xmlns="" ProductID="{8137748e-d4fb-4eeb-a871-d20e41b0fb50}" Title="Cafaholic" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Abhishek Dey" Description="An App to find cafes and bars nearby" Publisher="Cafaholic" PublisherID="{f8771ca3-825a-45fd-aa5e-8a8561f44f9c}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -16,25 +16,25 @@
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="DataBoundToken" TaskName="_default">
-        <TemplateFlip>
-          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
+        <TemplateIconic>
+          <SmallImageURI IsRelative="true" IsResource="false">IconicTileSmall.png</SmallImageURI>
           <Count>0</Count>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
-          <Title>cafaholic</Title>
-          <BackContent>
-          </BackContent>
-          <BackBackgroundImageURI IsRelative="true" IsResource="false">
-          </BackBackgroundImageURI>
-          <BackTitle>
-          </BackTitle>
-          <LargeBackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileLarge.png</LargeBackgroundImageURI>
-          <LargeBackContent />
-          <LargeBackBackgroundImageURI IsRelative="true" IsResource="false">
-          </LargeBackBackgroundImageURI>
+          <IconImageURI IsRelative="true" IsResource="false">IconicTileSmall.png</IconImageURI>
+          <Title>Cafaholic</Title>
+          <Message>
+          </Message>
+          <BackgroundColor>
+          </BackgroundColor>
+          <HasLarge>True</HasLarge>
+          <LargeContent1>
+          </LargeContent1>
+          <LargeContent2>
+          </LargeContent2>
+          <LargeContent3>
+          </LargeContent3>
           <DeviceLockImageURI IsRelative="true" IsResource="false">
           </DeviceLockImageURI>
-          <HasLarge>True</HasLarge>
-        </TemplateFlip>
+        </TemplateIconic>
       </PrimaryToken>
     </Tokens>
     <ScreenResolutions>

@@ -14,6 +14,25 @@ namespace Cafaholic.ViewModels
         /// Sample ViewModel property; this property is used in the view to display its value using a Binding.
         /// </summary>
         /// <returns></returns>
+        /// 
+        private string _price;
+        public string Price
+        {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                if (value != _price)
+                {
+                    _price = value;
+                    NotifyPropertyChanged("Price");
+                }
+            }
+        }
+
+
         public string LineOne
         {
             get

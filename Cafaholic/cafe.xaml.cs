@@ -21,6 +21,7 @@ namespace Cafaholic
     public partial class cafe : PhoneApplicationPage
     {
         Coffee selected_Cafe;
+        string price_range;
         public cafe()
         {
             InitializeComponent();
@@ -34,8 +35,18 @@ namespace Cafaholic
             var hours = PhoneApplicationService.Current.State["hours"];
             var likes = PhoneApplicationService.Current.State["likes"];
             var checkins = PhoneApplicationService.Current.State["checkins"];
+            var price = PhoneApplicationService.Current.State["price"];
 
-            selected_Cafe = new Coffee { LineOne = venue.ToString(), LineTwo = address.ToString(), LineThree = likes.ToString(), Latitude = latitude.ToString(), Longitude = longitude.ToString(), Hours = hours.ToString(), Rating = checkins.ToString() };
+            if (price.ToString() == "1")
+            {
+                price_range = "$";
+            }
+            else if(price.ToString()=="2")
+            {
+                price_range = "$$";
+            }
+            
+            selected_Cafe = new Coffee { LineOne = venue.ToString(), LineTwo = address.ToString(), LineThree = likes.ToString(), Latitude = latitude.ToString(), Longitude = longitude.ToString(), Hours = hours.ToString(), Rating = checkins.ToString(), Price=price_range };
             DataContext = selected_Cafe;
             if (Convert.ToInt32(DateTime.Now.TimeOfDay.Hours) >= 19)
                 myMap.ColorMode = MapColorMode.Dark;

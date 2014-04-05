@@ -25,6 +25,7 @@ namespace Cafaholic
         public List<String> cafe_long = new List<string>();
         public List<String> cafe_hours = new List<string>();
         public List<String> cafe_checkins = new List<string>();
+        public List<String> cafe_price = new List<string>();
         public List<String> bar_venues = new List<string>();
         public List<String> bar_addresses = new List<string>();
         public List<String> bar_likes = new List<string>();
@@ -32,6 +33,7 @@ namespace Cafaholic
         public List<String> bar_long = new List<string>();
         public List<String> bar_hours = new List<string>();
         public List<String> bar_checkins = new List<string>();
+        public List<String> bar_price = new List<string>();
         public static bool cafe_loaded = false;
         public static bool bar_loaded = false;
         public void getcafes(string _lat, string _long)
@@ -109,6 +111,7 @@ namespace Cafaholic
                     var longitude = item["venue"]["location"]["lng"];
                     var like = item["venue"]["likes"]["count"];
                     var checkins = item["venue"]["stats"]["checkinsCount"];
+                    var price = item["venue"]["price"]["tier"];
 
                     if (null != item["venue"]["hours"])
                     {
@@ -126,6 +129,7 @@ namespace Cafaholic
                     cafe_lat.Add(latitude.ToString());
                     cafe_long.Add(longitude.ToString());
                     cafe_checkins.Add(checkins.ToString());
+                    cafe_price.Add(price.ToString());
                 }
                 //city = _city.ToString();
                 if (cafe_venues.Count > 0)
@@ -133,7 +137,7 @@ namespace Cafaholic
                     App.ViewModel.Items.Clear();
                     for (int i = 0; i < cafe_venues.Count; i++)
                     {
-                        App.ViewModel.Items.Add(new ItemViewModel { LineOne = cafe_venues[i], LineTwo = cafe_addresses[i], LineThree = cafe_likes[i], Latitude= cafe_lat[i], Longitude=cafe_long[i], Hours=cafe_hours[i], Rating=cafe_checkins[i]});
+                        App.ViewModel.Items.Add(new ItemViewModel { LineOne = cafe_venues[i], LineTwo = cafe_addresses[i], LineThree = cafe_likes[i], Latitude= cafe_lat[i], Longitude=cafe_long[i], Hours=cafe_hours[i], Rating=cafe_checkins[i], Price=cafe_price[i]});
 
                     }
                 }
@@ -168,7 +172,7 @@ namespace Cafaholic
                 var like = item["venue"]["likes"]["count"];
                 var latitude = item["venue"]["location"]["lat"];
                 var longitude = item["venue"]["location"]["lng"];
-
+                var price = item["venue"]["price"]["tier"];
                 
                 if (null != item["venue"]["stats"]["checkinsCount"])
                 {
@@ -199,7 +203,7 @@ namespace Cafaholic
                 bar_likes.Add(like.ToString());
                 bar_lat.Add(latitude.ToString());
                 bar_long.Add(longitude.ToString());
-                
+                bar_price.Add(price.ToString());
             }
             //city = _city.ToString();
             if (bar_venues.Count > 0)
@@ -207,7 +211,7 @@ namespace Cafaholic
                 App.ViewModel.Bar.Clear();
                 for (int i = 0; i < bar_venues.Count; i++)
                 {
-                    App.ViewModel.Bar.Add(new Bars { LineOne = bar_venues[i], LineTwo = bar_addresses[i], LineThree = bar_likes[i], Latitude=bar_lat[i], Longitude=bar_long[i], Hours=bar_hours[i], Rating=bar_checkins[i]});
+                    App.ViewModel.Bar.Add(new Bars { LineOne = bar_venues[i], LineTwo = bar_addresses[i], LineThree = bar_likes[i], Latitude=bar_lat[i], Longitude=bar_long[i], Hours=bar_hours[i], Rating=bar_checkins[i], Price=bar_price[i]});
                 }
             }
             

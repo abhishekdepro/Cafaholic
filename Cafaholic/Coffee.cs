@@ -154,6 +154,23 @@ namespace Cafaholic
             }
         }
 
+        private string _price;
+        public string Price
+        {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                if (value != _price)
+                {
+                    _price = value;
+                    NotifyPropertyChanged("Price");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {

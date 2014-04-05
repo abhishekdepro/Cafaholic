@@ -163,7 +163,24 @@ namespace Cafaholic.ViewModels
             }
         }
 
+        public string Price
+        {
+            get
+            {
+                return _price;
+            }
+            set
+            {
+                if (value != _price)
+                {
+                    _price = value;
+                    NotifyPropertyChanged("Price");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
+        private string _price;
         private void NotifyPropertyChanged(String propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
@@ -172,5 +189,7 @@ namespace Cafaholic.ViewModels
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+        
     }
 }

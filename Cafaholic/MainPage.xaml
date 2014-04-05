@@ -83,6 +83,11 @@
                             <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
                         </telerikPrimitives:RadToggleSwitch.Foreground>
                     </telerikPrimitives:RadToggleSwitch>
+                    <telerikPrimitives:RadToggleSwitch x:Name="locationToggle" HorizontalAlignment="Left" Margin="23,323,0,0" VerticalAlignment="Top" Width="356" Content="Location" Checked="locationToggle_Checked" Unchecked="locationToggle_Unchecked">
+                        <telerikPrimitives:RadToggleSwitch.Foreground>
+                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                        </telerikPrimitives:RadToggleSwitch.Foreground>
+                    </telerikPrimitives:RadToggleSwitch>
 
 
 

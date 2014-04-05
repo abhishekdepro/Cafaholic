@@ -41,18 +41,24 @@
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes :" VerticalAlignment="Top" Margin="10,180,0,0"/>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineTwo}" VerticalAlignment="Top" Margin="126,10,0,0" Width="284" Height="63"/>
 
-            <TextBlock TextWrapping="Wrap" Text="{Binding LineThree}" Margin="0,212,262,268" FontSize="72">
+            <TextBlock TextWrapping="Wrap" Text="{Binding LineThree}" Margin="0,212,323,295" FontSize="60">
                 <TextBlock.Foreground>
                     <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
                 </TextBlock.Foreground>
             </TextBlock>
             <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Hours}" VerticalAlignment="Top" Margin="126,96,0,0" Width="284" Height="27"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Rating}" Margin="259,212,46,268" FontSize="72" TextAlignment="Center">
+            <TextBlock TextWrapping="Wrap" Text="{Binding Rating}" Margin="314,212,10,295" FontSize="60">
                 <TextBlock.Foreground>
                     <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
                 </TextBlock.Foreground>
             </TextBlock>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Check-ins :" VerticalAlignment="Top" Margin="286,180,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Check-ins :" VerticalAlignment="Top" Margin="314,180,0,0"/>
+            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Price($-$$$):" VerticalAlignment="Top" Margin="152,180,0,0"/>
+            <TextBlock TextWrapping="Wrap" Text="{Binding Price}" Margin="152,212,179,295" FontSize="60" TextAlignment="Center">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                </TextBlock.Foreground>
+            </TextBlock>
 
         </Grid>
         <Controls:Map x:Name="myMap" ColorMode="Light"  LandmarksEnabled="True" CartographicMode="Road" Pitch="45" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,335,0,0" Grid.Row="1" Height="219" Width="458" Loaded="myMap_Loaded" BorderThickness="2" Tap="myMap_Tap">

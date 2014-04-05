@@ -45,6 +45,39 @@ namespace Cafaholic
                     cafeToggle.IsChecked = true;
                 }
             }
+            //check for location permissions
+
+            if (appSettings.Contains("LocationConsent"))
+            {
+                
+                
+                    if ((bool)appSettings["LocationConsent"] == true)
+                    {
+                        locationToggle.IsChecked = true;
+                    }
+                    else
+                    {
+                        locationToggle.IsChecked = false;
+                    }
+                
+            }
+            else
+            {
+                MessageBoxResult result = MessageBox.Show("Allow this app to access your location?", "Location", MessageBoxButton.OKCancel);
+
+                if (result == MessageBoxResult.OK)
+                {
+                    //appSettings["LocationConsent"] = true;
+                    locationToggle.IsChecked = true;
+                }
+                else
+                {
+                    appSettings["LocationConsent"] = false;
+                    App.Current.Terminate();
+                }
+                appSettings.Save();
+            }
+
             //main.DefaultItem = main.Items[2];
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
@@ -74,32 +107,41 @@ namespace Cafaholic
             {
                 return gc.Position.Location;
             }*/
-
-            Geolocator gc = new Geolocator();
-            try
+            if ((bool)appSettings["LocationConsent"] == true)
             {
-                pos = await gc.GetGeopositionAsync();
+                Geolocator gc = new Geolocator();
+                try
+                {
+                    pos = await gc.GetGeopositionAsync();
 
-                string latitude = pos.Coordinate.Latitude.ToString();
-                string longitude = pos.Coordinate.Longitude.ToString();
-                FourSquare fs = new FourSquare();
-                switch(radius){
-                    case 1: 
-                    fs.getcafes(latitude, longitude);
-                    fs.getbars(latitude, longitude);
-                    break;
-                    case 2:
-                    fs.getcafes2km(latitude, longitude);
-                    fs.getbars2km(latitude, longitude);
-                    break;
-                    case 5:
-                    fs.getcafes5km(latitude, longitude);
-                    fs.getbars5km(latitude, longitude);
-                    break;
+                    string latitude = pos.Coordinate.Latitude.ToString();
+                    string longitude = pos.Coordinate.Longitude.ToString();
+                    FourSquare fs = new FourSquare();
+                    switch (radius)
+                    {
+                        case 1:
+                            fs.getcafes(latitude, longitude);
+                            fs.getbars(latitude, longitude);
+                            break;
+                        case 2:
+                            fs.getcafes2km(latitude, longitude);
+                            fs.getbars2km(latitude, longitude);
+                            break;
+                        case 5:
+                            fs.getcafes5km(latitude, longitude);
+                            fs.getbars5km(latitude, longitude);
+                            break;
+                    }
+
                 }
-               
-            }catch(Exception ex){
-                MessageBox.Show("Please turn Location services on!");
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Please turn Location services on!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enable location in settings!");
             }
         }
 
@@ -156,6 +198,7 @@ namespace Cafaholic
                     PhoneApplicationService.Current.State["hours"] = App.ViewModel.Items[index].Hours;
                     PhoneApplicationService.Current.State["likes"] = App.ViewModel.Items[index].LineThree;
                     PhoneApplicationService.Current.State["checkins"] = App.ViewModel.Items[index].Rating;
+                    PhoneApplicationService.Current.State["price"] = App.ViewModel.Items[index].Price;
                     saveTile(App.ViewModel.Items[index].LineOne.ToString(), App.ViewModel.Items.Count.ToString(), "cafe");
                 }
                 else
@@ -168,6 +211,7 @@ namespace Cafaholic
                     PhoneApplicationService.Current.State["hours"] = App.ViewModel.Bar[index].Hours;
                     PhoneApplicationService.Current.State["likes"] = App.ViewModel.Bar[index].LineThree;
                     PhoneApplicationService.Current.State["checkins"] = App.ViewModel.Bar[index].Rating;
+                    PhoneApplicationService.Current.State["price"] = App.ViewModel.Bar[index].Price;
                     saveTile(App.ViewModel.Bar[index].LineOne.ToString(), App.ViewModel.Bar.Count.ToString(), "bar");
                 }
             }
@@ -181,6 +225,7 @@ namespace Cafaholic
                 PhoneApplicationService.Current.State["hours"] = App.ViewModel.Bar[index].Hours;
                 PhoneApplicationService.Current.State["likes"] = App.ViewModel.Bar[index].LineThree;
                 PhoneApplicationService.Current.State["checkins"] = App.ViewModel.Bar[index].Rating;
+                PhoneApplicationService.Current.State["price"] = App.ViewModel.Bar[index].Price;
                 saveTile(App.ViewModel.Bar[index].LineOne.ToString(), App.ViewModel.Bar.Count.ToString(), "bar");
             }
             this.NavigationService.Navigate(new Uri("/Cafe.xaml", UriKind.Relative));
@@ -226,10 +271,10 @@ namespace Cafaholic
 
         private void saveTile(string item, string count, string selected)
         {
-            ShellTile oTile = ShellTile.ActiveTiles.FirstOrDefault(x => x.NavigationUri.ToString().Contains("flip".ToString()));
+            ShellTile oTile = ShellTile.ActiveTiles.FirstOrDefault();
 
 
-            if (oTile != null && oTile.NavigationUri.ToString().Contains("flip"))
+            if (oTile != null)
             {
                 IconicTileData oFliptile = new IconicTileData();
                 oFliptile.Title = "Number of "+selected+"s here:";
@@ -298,6 +343,23 @@ namespace Cafaholic
             MarketplaceReviewTask review = new MarketplaceReviewTask();
           
             review.Show();
+        }
+
+        private void locationToggle_Checked(object sender, RoutedEventArgs e)
+        {
+            
+                appSettings["LocationConsent"] = true;
+                appSettings.Save();
+            
+        }
+
+        private void locationToggle_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (appSettings.Contains("LocationConsent"))
+            {
+                appSettings["LocationConsent"] = false;
+                appSettings.Save();
+            }
         }
 
         
