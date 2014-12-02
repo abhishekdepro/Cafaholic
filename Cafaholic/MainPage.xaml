@@ -8,6 +8,8 @@
     xmlns:telerikPrimitives="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:telerikDataVisualization="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.DataVisualization"
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
+    xmlns:telerikToggleSwitch="clr-namespace:Telerik.Windows.Controls.ToggleSwitch;assembly=Telerik.Windows.Controls.Primitives"
+    xmlns:adduplex="clr-namespace:AdDuplex;assembly=AdDuplex.WindowsPhone"
     x:Class="Cafaholic.MainPage"
     mc:Ignorable="d"
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
@@ -15,16 +17,21 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-  shell:SystemTray.IsVisible="False">
-
+  shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="#FF8F3400"
+    shell:SystemTray.Opacity="0.8">
+    
+    
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            
-            <shell:ApplicationBarIconButton IconUri="/Assets/questionmark.png" Text="about" Click="ApplicationBarIconButton_Click"/>
+        <shell:ApplicationBar IsVisible="True" Opacity="0.8" IsMenuEnabled="True" Mode="Minimized" BackgroundColor="#FF8F3400">
+
+            <shell:ApplicationBarIconButton IconUri="/Assets/questionmark.png" Text="about"  Click="ApplicationBarIconButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/like.png" Text="like" Click="ApplicationBarIconButton_Click_1"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
+    
+    
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -56,65 +63,86 @@
         <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
 
         <!--Panorama control-->
-        <phone:Panorama Title="cafaholic" x:Name="main">
+        <phone:Panorama Title="cafaholic ☕" TitleTemplate="{StaticResource TitlePanaroma}" x:Name="main" Foreground="#FFF5DEAC" Height="758" VerticalAlignment="Bottom">
+            <phone:Panorama.Background>
+                <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/coffeeback.jpg" Opacity="0.4"/>
+            </phone:Panorama.Background>
 
-            <phone:PanoramaItem Header="Settings" FontSize="20">
-                <Grid Margin="0,-25,0,0">
-                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Radius (in kilometeres):" VerticalAlignment="Top" Margin="23,10,0,0" Width="356" FontSize="24"/>
+            <phone:PanoramaItem Header="Settings" HeaderTemplate="{StaticResource MyItemHeaderTemplate}" FontSize="20" FontFamily="/Assets/Font/Quirky Nots.otf#Quirky Nots" Foreground="#FFF5DEAC">
+                <Grid Margin="0,1,0,0" Width="433">
+                    <!--Grid.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.5"/>
+                    </-->
+                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Radius (in kilometeres):" VerticalAlignment="Top" Margin="23,10,0,0" Width="356" FontSize="26"/>
                     <Grid HorizontalAlignment="Left" Height="119" VerticalAlignment="Top" Width="420" Margin="0,47,0,0"/>
-                    <RadioButton x:Name="twokm" Content="2 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,66,0,0" GroupName="" Checked="twokm_Checked">
+                    <RadioButton FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="twokm" Content="2 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,66,0,0" GroupName="" Checked="twokm_Checked" Foreground="#FFF5DEAC">
                         <RadioButton.BorderBrush>
-                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+
+                            <SolidColorBrush Color="#FFE65400"/>
+
                         </RadioButton.BorderBrush>
                     </RadioButton>
-                    <RadioButton x:Name="fivekm" Content="5 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="259,66,0,0" GroupName="" Checked="fivekm_Checked">
+                    <RadioButton FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="fivekm" Content="5 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="259,66,0,0" GroupName="" Checked="fivekm_Checked" Foreground="#FFF5DEAC">
                         <RadioButton.BorderBrush>
-                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                            <SolidColorBrush Color="#FFE65400"/>
                         </RadioButton.BorderBrush>
                     </RadioButton>
-                    <telerikPrimitives:RadToggleSwitch x:Name="barToggle" HorizontalAlignment="Left" Margin="23,171,0,0" VerticalAlignment="Top" Width="356" Content="Turn Bars Off" Checked="barToggle_Checked" Unchecked="barToggle_Unchecked">
-                        <telerikPrimitives:RadToggleSwitch.Foreground>
-                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
-                        </telerikPrimitives:RadToggleSwitch.Foreground>
-
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="barToggle" HorizontalAlignment="Left" Margin="23,138,0,0" VerticalAlignment="Top" Width="356" Content="Turn Bars Off" Checked="barToggle_Checked" Unchecked="barToggle_Unchecked">
+                        <telerikPrimitives:RadToggleSwitch.ButtonStyle>
+                            <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
+                                <Setter Property="CheckBackground" Value="#FF8F3400"/>
+                            </Style>
+                        </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <telerikPrimitives:RadToggleSwitch x:Name="cafeToggle" HorizontalAlignment="Left" Margin="23,246,0,0" VerticalAlignment="Top" Width="356" Content="Turn Cafes off" Checked="cafeToggle_Checked" Unchecked="cafeToggle_Unchecked">
-                        <telerikPrimitives:RadToggleSwitch.Foreground>
-                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
-                        </telerikPrimitives:RadToggleSwitch.Foreground>
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="cafeToggle" HorizontalAlignment="Left" Margin="23,214,0,0" VerticalAlignment="Top" Width="356" Content="Turn Cafes off" Checked="cafeToggle_Checked" Unchecked="cafeToggle_Unchecked">
+                        <telerikPrimitives:RadToggleSwitch.ButtonStyle>
+                            <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
+                                <Setter Property="CheckBackground" Value="#FF8F3400"/>
+                            </Style>
+                        </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <telerikPrimitives:RadToggleSwitch x:Name="locationToggle" HorizontalAlignment="Left" Margin="23,323,0,0" VerticalAlignment="Top" Width="356" Content="Location" Checked="locationToggle_Checked" Unchecked="locationToggle_Unchecked">
-                        <telerikPrimitives:RadToggleSwitch.Foreground>
-                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
-                        </telerikPrimitives:RadToggleSwitch.Foreground>
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="locationToggle" HorizontalAlignment="Left" Margin="23,291,0,0" VerticalAlignment="Top" Width="356" Content="Location" Checked="locationToggle_Checked" Unchecked="locationToggle_Unchecked">
+                        <telerikPrimitives:RadToggleSwitch.ButtonStyle>
+                            <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
+                                <Setter Property="CheckBackground" Value="#FF8F3400"/>
+                            </Style>
+                        </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
 
 
 
-
+                    <!--Grid Margin="-21,340,-54,40">
+                        <adduplex:AdControl x:Name="adDuplexAd" AppId="108927" Margin="0,11,14,11"/>
+                    </-->
                 </Grid>
             </phone:PanoramaItem>
 
             <!--Panorama item one-->
-            <phone:PanoramaItem Header="Cafes">
+            <phone:PanoramaItem Header="Cafes" HeaderTemplate="{StaticResource MyItemHeaderTemplate}" Foreground="#FFF5DEAC" FontFamily="/Assets/Font/Quirky Nots.otf#Quirky Nots">
                 <!--Double line list with text wrapping-->
                 <ListBox  Name="cafelist" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,17" Tap="StackPanel_Tap">
+
+                                <!--StackPanel.Background>
+                                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                </-->
                                 <!--Replace rectangle with image-->
                                 <Grid Width="103">
-                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center">
+                                    <TextBlock  FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center">
                                         <TextBlock.Foreground>
-                                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                                            <SolidColorBrush Color="#FF8F3400"/>
                                         </TextBlock.Foreground>
                                     </TextBlock>
-                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0"/>
+                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}">
+
+                                    </TextBlock>
 
                                 </Grid>
                                 <StackPanel Width="311">
-                                    <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                    <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
+                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -124,32 +152,35 @@
 
             <!--Panorama item two-->
             <!--Use 'Orientation="Horizontal"' to enable a panel that lays out horizontally-->
-            <phone:PanoramaItem Header="Bars">
+            <phone:PanoramaItem Header="Bars" HeaderTemplate="{StaticResource MyItemHeaderTemplate}" Foreground="#FFF5DEAC" Height="664">
                 <!--Double line list with image placeholder and text wrapping-->
                 <ListBox x:Name="barlist" Margin="0,0,-12,0" ItemsSource="{Binding Bar}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Orientation="Horizontal" Margin="0,0,0,17" Tap="StackPanel_Tap">
                                 <!--Replace rectangle with image-->
+                                <!--StackPanel.Background>
+                                    <SolidColorBrush Color="Black" Opacity="0.5"/>
+                                </-->
                                 <Grid Width="103">
-                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center">
+                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center">
                                         <TextBlock.Foreground>
-                                            <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                                            <SolidColorBrush Color="#FF8F3400"/>
                                         </TextBlock.Foreground>
                                     </TextBlock>
-                                    <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0"/>
+                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
 
                                 </Grid>
                                 <StackPanel Width="311">
-                                    <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
-                                    <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
+                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
             </phone:PanoramaItem>
-            
+
         </phone:Panorama>
 
     </Grid>

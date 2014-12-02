@@ -26,6 +26,7 @@ namespace Cafaholic
         public List<String> cafe_hours = new List<string>();
         public List<String> cafe_checkins = new List<string>();
         public List<String> cafe_price = new List<string>();
+        public List<String> cafe_contact = new List<string>();
         public List<String> bar_venues = new List<string>();
         public List<String> bar_addresses = new List<string>();
         public List<String> bar_likes = new List<string>();
@@ -34,15 +35,17 @@ namespace Cafaholic
         public List<String> bar_hours = new List<string>();
         public List<String> bar_checkins = new List<string>();
         public List<String> bar_price = new List<string>();
+        public List<String> bar_contact = new List<string>();
         public static bool cafe_loaded = false;
         public static bool bar_loaded = false;
         public void getcafes(string _lat, string _long)
         {
             WebClient wc = new WebClient();
+        
             Uri coffee_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll="+_lat+","+_long+"&llAcc=1000&radius=1000&section=coffee&limit=10&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(CafeCompletedDownload);
             wc.DownloadStringAsync(coffee_request);
-            cafeloadcomplete();
+            //cafeloadcomplete();
         }
 
         public void getbars(string _lat, string _long)
@@ -90,6 +93,7 @@ namespace Cafaholic
         {
             try
             {
+                
                 var container = JsonConvert.DeserializeObject(e.Result) as JObject;
                 //var _city = container["response"]["geocode"]["where"];
 
@@ -105,14 +109,63 @@ namespace Cafaholic
                     MessageBox.Show("No cafes in your area now!");
                 foreach (JObject item in items)
                 {
+                    try
+                    {
+                        List<JObject> tips = item["tips"].Children()
+                                    .Cast<JObject>()
+
+                                    .ToList();
+                        //var likes = tips[0]["likes"]["count"];
+                        try
+                        {
+                            var likes = tips[0]["likes"]["count"];
+                            cafe_likes.Add(likes.ToString());
+                        }
+
+                        catch (Exception ex)
+                        {
+                            var likes = "0";
+                            cafe_likes.Add(likes.ToString());
+                        }
+                    }
+                    catch (Exception p)
+                    {
+                        var likes = "0";
+                        cafe_likes.Add(likes.ToString());
+                    }
                     var venue = item["venue"]["name"];
                     var address = item["venue"]["location"]["address"];
                     var latitude = item["venue"]["location"]["lat"];
                     var longitude = item["venue"]["location"]["lng"];
-                    var like = item["venue"]["likes"]["count"];
-                    var checkins = item["venue"]["stats"]["checkinsCount"];
-                    var price = item["venue"]["price"]["tier"];
+                    if (null != item["venue"]["contact"]["phone"])
+                    {
+                        var contact = item["venue"]["contact"]["phone"];
+                        cafe_contact.Add(contact.ToString());
+                    }
+                    else
+                    {
+                        cafe_contact.Add("No Contact Available");
+                    }
+                    if (null != item["venue"]["stats"]["checkinsCount"])
+                    {
+                        var checkins = item["venue"]["stats"]["checkinsCount"];
 
+                        cafe_checkins.Add(checkins.ToString());
+                    }
+                    else
+                    {
+                        cafe_checkins.Add("0");
+                    }
+                    try
+                    {
+                        var price = item["venue"]["price"]["tier"];
+                        cafe_price.Add(price.ToString());
+                    }
+                    catch (Exception ex) 
+                    {
+                        var price = "1";
+                        cafe_price.Add(price.ToString());
+                    }
                     if (null != item["venue"]["hours"])
                     {
                         var hours = item["venue"]["hours"]["status"];
@@ -125,19 +178,20 @@ namespace Cafaholic
 
                     cafe_venues.Add(venue.ToString());
                     cafe_addresses.Add(address.ToString());
-                    cafe_likes.Add(like.ToString());
+                    //cafe_likes.Add(likes.ToString());
                     cafe_lat.Add(latitude.ToString());
                     cafe_long.Add(longitude.ToString());
-                    cafe_checkins.Add(checkins.ToString());
-                    cafe_price.Add(price.ToString());
+                    
+                    
                 }
+                App.ViewModel.Items.Clear();
                 //city = _city.ToString();
                 if (cafe_venues.Count > 0)
                 {
                     App.ViewModel.Items.Clear();
                     for (int i = 0; i < cafe_venues.Count; i++)
                     {
-                        App.ViewModel.Items.Add(new ItemViewModel { LineOne = cafe_venues[i], LineTwo = cafe_addresses[i], LineThree = cafe_likes[i], Latitude= cafe_lat[i], Longitude=cafe_long[i], Hours=cafe_hours[i], Rating=cafe_checkins[i], Price=cafe_price[i]});
+                        App.ViewModel.Items.Add(new ItemViewModel { LineOne = cafe_venues[i], LineTwo = cafe_addresses[i], LineThree = cafe_likes[i], Latitude= cafe_lat[i], Longitude=cafe_long[i], Hours=cafe_hours[i], Rating=cafe_checkins[i], Price=cafe_price[i], Contact=cafe_contact[i]});
 
                     }
                 }
@@ -167,12 +221,42 @@ namespace Cafaholic
                 MessageBox.Show("No bars in your area now!");
             foreach (JObject item in items)
             {
+                try
+                {
+                    List<JObject> tips = item["tips"].Children()
+                                    .Cast<JObject>()
+
+                                    .ToList();
+                    try
+                    {
+                        var likes = tips[0]["likes"]["count"];
+                        bar_likes.Add(likes.ToString());
+                    }
+                    catch (Exception ex)
+                    {
+                        var likes = "0";
+                        bar_likes.Add(likes.ToString());
+                    }
+                }
+                catch (Exception p) {
+                    var likes = "0";
+                    bar_likes.Add(likes.ToString());
+                }
                 var venue = item["venue"]["name"];
                 var address = item["venue"]["location"]["address"];
-                var like = item["venue"]["likes"]["count"];
+                //var like = item["venue"]["likes"]["count"];
                 var latitude = item["venue"]["location"]["lat"];
                 var longitude = item["venue"]["location"]["lng"];
                 var price = item["venue"]["price"]["tier"];
+                if (null != item["venue"]["contact"]["phone"])
+                {
+                    var contact = item["venue"]["contact"]["phone"];
+                    bar_contact.Add(contact.ToString());
+                }
+                else
+                {
+                    bar_contact.Add("No Contact Available");
+                }
                 
                 if (null != item["venue"]["stats"]["checkinsCount"])
                 {
@@ -200,18 +284,19 @@ namespace Cafaholic
                     bar_addresses.Add(address.ToString());
                 else
                     bar_addresses.Add("------------");
-                bar_likes.Add(like.ToString());
+                
                 bar_lat.Add(latitude.ToString());
                 bar_long.Add(longitude.ToString());
                 bar_price.Add(price.ToString());
             }
             //city = _city.ToString();
+            App.ViewModel.Bar.Clear();
             if (bar_venues.Count > 0)
             {
                 App.ViewModel.Bar.Clear();
                 for (int i = 0; i < bar_venues.Count; i++)
                 {
-                    App.ViewModel.Bar.Add(new Bars { LineOne = bar_venues[i], LineTwo = bar_addresses[i], LineThree = bar_likes[i], Latitude=bar_lat[i], Longitude=bar_long[i], Hours=bar_hours[i], Rating=bar_checkins[i], Price=bar_price[i]});
+                    App.ViewModel.Bar.Add(new Bars { LineOne = bar_venues[i], LineTwo = bar_addresses[i], LineThree = bar_likes[i], Latitude=bar_lat[i], Longitude=bar_long[i], Hours=bar_hours[i], Rating=bar_checkins[i], Price=bar_price[i], Contact=bar_contact[i]});
                 }
             }
             

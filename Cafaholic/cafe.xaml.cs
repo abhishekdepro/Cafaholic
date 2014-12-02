@@ -22,11 +22,12 @@ namespace Cafaholic
     {
         Coffee selected_Cafe;
         string price_range;
+        PhoneCallTask call;
+        public string number;
         public cafe()
         {
             InitializeComponent();
-
-
+            
 
             var venue = PhoneApplicationService.Current.State["venue"];
             var address = PhoneApplicationService.Current.State["address"];
@@ -36,17 +37,20 @@ namespace Cafaholic
             var likes = PhoneApplicationService.Current.State["likes"];
             var checkins = PhoneApplicationService.Current.State["checkins"];
             var price = PhoneApplicationService.Current.State["price"];
-
+            var contact = PhoneApplicationService.Current.State["contact"];
+            number = contact.ToString();
             if (price.ToString() == "1")
             {
-                price_range = "$";
+                price_range = "☕";
             }
-            else if(price.ToString()=="2")
+            else if (price.ToString() == "2")
             {
-                price_range = "$$";
+                price_range = "☕☕";
             }
-            
-            selected_Cafe = new Coffee { LineOne = venue.ToString(), LineTwo = address.ToString(), LineThree = likes.ToString(), Latitude = latitude.ToString(), Longitude = longitude.ToString(), Hours = hours.ToString(), Rating = checkins.ToString(), Price=price_range };
+            else
+                price_range = "☕☕☕";
+
+            selected_Cafe = new Coffee { LineOne = venue.ToString(), LineTwo = address.ToString(), LineThree = likes.ToString(), Latitude = latitude.ToString(), Longitude = longitude.ToString(), Hours = hours.ToString(), Rating = checkins.ToString(), Price = price_range, Contact = contact.ToString() + " ✆" };
             DataContext = selected_Cafe;
             if (Convert.ToInt32(DateTime.Now.TimeOfDay.Hours) >= 19)
                 myMap.ColorMode = MapColorMode.Dark;
@@ -120,6 +124,42 @@ namespace Cafaholic
         {
             MarketplaceReviewTask review = new MarketplaceReviewTask();
             review.Show();
+        }
+
+        private void caller_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            call = new PhoneCallTask();
+            try
+            {
+                if (number.Length > 0)
+                {
+                    call.PhoneNumber = number;
+                    call.Show();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid number");
+            }
+        }
+
+        private void ApplicationBarIconButton_Click_2(object sender, EventArgs e)
+        {
+            call = new PhoneCallTask();
+            try
+            {
+                if (number.Length > 0)
+                {
+                    call.PhoneNumber = number;
+                    call.Show();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid number");
+            }
         }
     }
 

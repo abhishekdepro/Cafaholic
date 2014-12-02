@@ -171,6 +171,23 @@ namespace Cafaholic
             }
         }
 
+        private string _contact;
+        public string Contact
+        {
+            get
+            {
+                return _contact;
+            }
+            set
+            {
+                if (value != _contact)
+                {
+                    _contact = value;
+                    NotifyPropertyChanged("Contact");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {

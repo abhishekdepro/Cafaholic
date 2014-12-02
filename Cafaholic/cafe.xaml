@@ -14,15 +14,22 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.BackgroundColor="#FF8F3400"
+    shell:SystemTray.Opacity="0.8">
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+        <shell:ApplicationBar IsVisible="True" Opacity="0.8"  IsMenuEnabled="True"  Mode="Minimized" BackgroundColor="#FF8F3400">
 
             <shell:ApplicationBarIconButton IconUri="/Assets/questionmark.png" Text="About" Click="ApplicationBarIconButton_Click"/>
             <shell:ApplicationBarIconButton IconUri="/Assets/like.png" Text="Like" Click="ApplicationBarIconButton_Click_1"/>
+            <shell:ApplicationBarIconButton IconUri="/Assets/phone.png" Text="Call" Click="ApplicationBarIconButton_Click_2"/>
+
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Margin="0,28,0,0">
+        <Grid.Background>
+            <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/coffeeback.jpg" Opacity="0.4"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -30,41 +37,41 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="cafaholic" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Text="{Binding LineOne}" FontSize="50"/>
+            <TextBlock Text="cafaholic" FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" FontSize="25" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock  Foreground="#FFF5DEAC" Margin="9,-7,0,0" FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" Style="{StaticResource PhoneTextTitle1Style}" Text="{Binding LineOne}" FontSize="52" Height="79" TextTrimming="WordEllipsis"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Margin="12,109,12,0" Grid.RowSpan="2">
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Address :" VerticalAlignment="Top" Margin="10,10,0,0"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Hours :" VerticalAlignment="Top" Margin="10,96,0,0"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes :" VerticalAlignment="Top" Margin="10,180,0,0"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineTwo}" VerticalAlignment="Top" Margin="126,10,0,0" Width="284" Height="63"/>
+        <Grid x:Name="ContentPanel" Margin="12,95,12,0" Grid.RowSpan="2">
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Address :" VerticalAlignment="Top" Margin="10,36,0,0" FontSize="26"/>
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Hours :" VerticalAlignment="Top" Margin="10,122,0,0" FontSize="26"/>
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes :" VerticalAlignment="Top" Margin="10,292,0,0" FontSize="26"/>
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineTwo}" VerticalAlignment="Top" Margin="138,36,0,0" Width="284" Height="63" FontSize="26"/>
 
-            <TextBlock TextWrapping="Wrap" Text="{Binding LineThree}" Margin="0,212,323,295" FontSize="60">
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" TextWrapping="Wrap" Text="{Binding LineThree}" Margin="10,324,323,183" FontSize="50">
                 <TextBlock.Foreground>
-                    <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                    <SolidColorBrush Color="#FFC54800"/>
                 </TextBlock.Foreground>
             </TextBlock>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Hours}" VerticalAlignment="Top" Margin="126,96,0,0" Width="284" Height="27"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Rating}" Margin="314,212,10,295" FontSize="60">
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Hours}" VerticalAlignment="Top" Margin="138,122,0,0" Width="284" Height="32" FontSize="26"/>
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" TextWrapping="Wrap" Text="{Binding Rating}" Margin="301,324,10,183" FontSize="50">
                 <TextBlock.Foreground>
-                    <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                    <SolidColorBrush Color="#FFC54800"/>
                 </TextBlock.Foreground>
             </TextBlock>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Check-ins :" VerticalAlignment="Top" Margin="314,180,0,0"/>
-            <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Price($-$$$):" VerticalAlignment="Top" Margin="152,180,0,0"/>
-            <TextBlock TextWrapping="Wrap" Text="{Binding Price}" Margin="152,212,179,295" FontSize="60" TextAlignment="Center">
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Check-ins :" VerticalAlignment="Top" Margin="314,292,0,0" FontSize="26"/>
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Price($-$$$):" VerticalAlignment="Top" Margin="138,292,0,0" FontSize="26"/>
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" TextWrapping="Wrap" Text="{Binding Price}" Margin="138,324,160,183" FontSize="50" TextAlignment="Center">
                 <TextBlock.Foreground>
-                    <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                    <SolidColorBrush Color="#FFC54800"/>
                 </TextBlock.Foreground>
             </TextBlock>
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact :" VerticalAlignment="Top" Margin="10,200,0,0" FontSize="30"/>
+            <TextBlock x:Name="caller" Foreground="#FFF5DEAC" FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Contact}" VerticalAlignment="Top" Margin="160,200,0,0" Width="285" Height="41" FontSize="30" Tap="caller_Tap"/>
 
         </Grid>
-        <Controls:Map x:Name="myMap" ColorMode="Light"  LandmarksEnabled="True" CartographicMode="Road" Pitch="45" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,335,0,0" Grid.Row="1" Height="219" Width="458" Loaded="myMap_Loaded" BorderThickness="2" Tap="myMap_Tap">
-            <Controls:Map.BorderBrush>
-                <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
-            </Controls:Map.BorderBrush>
+        <Controls:Map x:Name="myMap" ColorMode="Light"  LandmarksEnabled="True" CartographicMode="Road" Pitch="45" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,351,0,0" Grid.Row="1" Height="219" Width="458" Loaded="myMap_Loaded" BorderThickness="2" Tap="myMap_Tap">
+
             <toolkit:MapExtensions.Children>
                 <toolkit:Pushpin x:Name="MyPushpin">
                     <toolkit:Pushpin.Template>

@@ -22,6 +22,7 @@ namespace Cafaholic
     public partial class MainPage : PhoneApplicationPage
     {
         public Geoposition pos;
+		public ProgressIndicator progress;
         PanoramaItem p;
         private IsolatedStorageSettings appSettings = IsolatedStorageSettings.ApplicationSettings;
         // Constructor
@@ -82,11 +83,12 @@ namespace Cafaholic
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
             this.Loaded += new RoutedEventHandler(MainPage_Loaded);
-
+			
             //Shows the rate reminder message, according to the settings of the RateReminder.
             //(App.Current as App).rateReminder.Notify();
             getGeoLocation(1);
             main.DefaultItem = main.Items[1];
+			
             //GeoCoordinate pos = getGeoLocation();
             
             //busy.IsRunning = false;
@@ -107,9 +109,14 @@ namespace Cafaholic
             {
                 return gc.Position.Location;
             }*/
+			//SystemTray.SetProgressIndicator(this, progress);
+			//progress.IsVisible = true;
+			
             if ((bool)appSettings["LocationConsent"] == true)
             {
                 Geolocator gc = new Geolocator();
+
+            
                 try
                 {
                     pos = await gc.GetGeopositionAsync();
@@ -132,7 +139,7 @@ namespace Cafaholic
                             fs.getbars5km(latitude, longitude);
                             break;
                     }
-
+					
                 }
                 catch (Exception ex)
                 {
@@ -166,8 +173,10 @@ namespace Cafaholic
 
         private void twokm_Checked(object sender, RoutedEventArgs e)
         {
+            
             getGeoLocation(2);
             main.DefaultItem = main.Items[1];
+            
         }
 
         private void fivekm_Checked(object sender, RoutedEventArgs e)
@@ -199,7 +208,8 @@ namespace Cafaholic
                     PhoneApplicationService.Current.State["likes"] = App.ViewModel.Items[index].LineThree;
                     PhoneApplicationService.Current.State["checkins"] = App.ViewModel.Items[index].Rating;
                     PhoneApplicationService.Current.State["price"] = App.ViewModel.Items[index].Price;
-                    saveTile(App.ViewModel.Items[index].LineOne.ToString(), App.ViewModel.Items.Count.ToString(), "cafe");
+                    PhoneApplicationService.Current.State["contact"] = App.ViewModel.Items[index].Contact;
+                    saveTile(App.ViewModel.Items[index].LineOne.ToString(),App.ViewModel.Items[index].Hours.ToString(), App.ViewModel.Items.Count.ToString(), "cafe");
                 }
                 else
                 {
@@ -212,7 +222,8 @@ namespace Cafaholic
                     PhoneApplicationService.Current.State["likes"] = App.ViewModel.Bar[index].LineThree;
                     PhoneApplicationService.Current.State["checkins"] = App.ViewModel.Bar[index].Rating;
                     PhoneApplicationService.Current.State["price"] = App.ViewModel.Bar[index].Price;
-                    saveTile(App.ViewModel.Bar[index].LineOne.ToString(), App.ViewModel.Bar.Count.ToString(), "bar");
+                    PhoneApplicationService.Current.State["contact"] = App.ViewModel.Bar[index].Contact;
+                    saveTile(App.ViewModel.Bar[index].LineOne.ToString(),App.ViewModel.Bar[index].Hours.ToString(), App.ViewModel.Bar.Count.ToString(), "bar");
                 }
             }
             else
@@ -226,7 +237,8 @@ namespace Cafaholic
                 PhoneApplicationService.Current.State["likes"] = App.ViewModel.Bar[index].LineThree;
                 PhoneApplicationService.Current.State["checkins"] = App.ViewModel.Bar[index].Rating;
                 PhoneApplicationService.Current.State["price"] = App.ViewModel.Bar[index].Price;
-                saveTile(App.ViewModel.Bar[index].LineOne.ToString(), App.ViewModel.Bar.Count.ToString(), "bar");
+                PhoneApplicationService.Current.State["contact"] = App.ViewModel.Bar[index].Contact;
+                saveTile(App.ViewModel.Bar[index].LineOne.ToString(),App.ViewModel.Bar[index].Hours.ToString(), App.ViewModel.Bar.Count.ToString(), "bar");
             }
             this.NavigationService.Navigate(new Uri("/Cafe.xaml", UriKind.Relative));
             
@@ -269,7 +281,7 @@ namespace Cafaholic
         }
 
 
-        private void saveTile(string item, string count, string selected)
+        private void saveTile(string item,string hours, string count, string selected)
         {
             ShellTile oTile = ShellTile.ActiveTiles.FirstOrDefault();
 
@@ -281,13 +293,13 @@ namespace Cafaholic
                 oFliptile.Count = Int32.Parse(count);
                 oFliptile.WideContent1 = "Cafaholic";
                 if(selected=="cafe")
-                    oFliptile.WideContent3 = "Coffee is good for health";
+                    oFliptile.WideContent3 = hours;
                 else
-                    oFliptile.WideContent3 = "Do not drink and drive";
+                    oFliptile.WideContent3 = hours;
                 oFliptile.WideContent2 = item;
-                oFliptile.SmallIconImage = new Uri("/Assets/Tiles/IconicTileSmall.ico", UriKind.Relative);
-                oFliptile.IconImage = new Uri("/Assets/Tiles/IconicTileSmall.ico", UriKind.Relative);
-                oFliptile.BackgroundColor = (Color)Application.Current.Resources["PhoneAccentColor"];
+                oFliptile.SmallIconImage = new Uri("/Assets/Tiles/coffeeicon.png", UriKind.Relative);
+                oFliptile.IconImage = new Uri("/Assets/Tiles/coffeeicon.png", UriKind.Relative);
+                //oFliptile.BackgroundColor = (Color)Application.Current.Resources["PhoneAccentColor"];
 
                 oTile.Update(oFliptile);
                 //MessageBox.Show("Flip Tile Data successfully update.");
@@ -326,9 +338,9 @@ namespace Cafaholic
                    WideContent1 = "Get Coffee instantly",
                    WideContent2 = "Get to a Bar now",
                    WideContent3 = "Location based",
-                   SmallIconImage = new Uri("/Assets/Tiles/IconicTileSmall.ico", UriKind.Relative),
-                   IconImage = new Uri("/Assets/Tiles/IconicTileSmall.ico", UriKind.Relative),
-                   BackgroundColor = (Color)Application.Current.Resources["PhoneAccentColor"]
+                   SmallIconImage = new Uri("/Assets/Tiles/coffeeicon.png", UriKind.Relative),
+                   IconImage = new Uri("/Assets/Tiles/coffeeicon.png", UriKind.Relative),
+                  // BackgroundColor = (Color)Application.Current.Resources["PhoneAccentColor"]
                 };
             return TileData;
         }

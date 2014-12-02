@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{8137748e-d4fb-4eeb-a871-d20e41b0fb50}" Title="Cafaholic" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Abhishek Dey" Description="An App to find cafes and bars nearby" Publisher="Cafaholic" PublisherID="{f8771ca3-825a-45fd-aa5e-8a8561f44f9c}">
-    <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
+  <App xmlns="" ProductID="{8137748e-d4fb-4eeb-a871-d20e41b0fb50}" Title="Cafaholic" RuntimeType="Silverlight" Version="2.0.0.0" Genre="apps.normal" Author="Abhishek Dey" Description="An App to find cafes and bars nearby" Publisher="Cafaholic" PublisherID="{f8771ca3-825a-45fd-aa5e-8a8561f44f9c}">
+    <IconPath IsRelative="true" IsResource="false">Assets\icon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
       <Capability Name="ID_CAP_SENSORS" />
@@ -10,6 +10,7 @@
       <Capability Name="ID_CAP_IDENTITY_DEVICE" />
       <Capability Name="ID_CAP_LOCATION" />
       <Capability Name="ID_CAP_MAP" />
+      <Capability Name="ID_CAP_PHONEDIALER" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
@@ -17,9 +18,9 @@
     <Tokens>
       <PrimaryToken TokenID="DataBoundToken" TaskName="_default">
         <TemplateIconic>
-          <SmallImageURI IsRelative="true" IsResource="false">IconicTileSmall.png</SmallImageURI>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\coffeeicon.png</SmallImageURI>
           <Count>0</Count>
-          <IconImageURI IsRelative="true" IsResource="false">IconicTileSmall.png</IconImageURI>
+          <IconImageURI IsRelative="true" IsResource="false">Assets\Tiles\coffeeicon.png</IconImageURI>
           <Title>Cafaholic</Title>
           <Message>
           </Message>

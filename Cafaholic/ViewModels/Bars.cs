@@ -15,6 +15,24 @@ namespace Cafaholic.ViewModels
         /// </summary>
         /// <returns></returns>
         /// 
+        /// 
+        private string _contact;
+        public string Contact
+        {
+            get
+            {
+                return _contact;
+            }
+            set
+            {
+                if (value != _contact)
+                {
+                    _contact = value;
+                    NotifyPropertyChanged("Contact");
+                }
+            }
+        }
+
         private string _price;
         public string Price
         {

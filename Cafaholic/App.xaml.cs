@@ -92,7 +92,10 @@ namespace Cafaholic
 
             //Defines the default email where the diagnostics info will be send.
             diagnostics.EmailTo = "abhishekde@hotmail.com";
-
+            //SolidColorBrush s1=(SolidColorBrush)Resources["AppAccentBrush"];
+            Resources.Remove("PhoneAccentColor");
+            Resources.Add("PhoneAccentColor", Colors.Brown);
+            ((SolidColorBrush)Resources["PhoneAccentBrush"]).Color = Colors.Brown;
             //Initializes this instance.
             diagnostics.Init();
         

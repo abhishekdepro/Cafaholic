@@ -179,8 +179,26 @@ namespace Cafaholic.ViewModels
             }
         }
 
+        private string _contact;
+        public string Contact
+        {
+            get
+            {
+                return _contact;
+            }
+            set
+            {
+                if (value != _contact)
+                {
+                    _contact = value;
+                    NotifyPropertyChanged("Contact");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private string _price;
+
         private void NotifyPropertyChanged(String propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
