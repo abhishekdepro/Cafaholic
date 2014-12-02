@@ -12,9 +12,13 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="False"
+    shell:SystemTray.Opacity="0.3">
 
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot">
+        <Grid.Background>
+            <ImageBrush Opacity="0.2" Stretch="UniformToFill" ImageSource="/Assets/coffee.jpg"/>
+        </Grid.Background>
         <Grid.DataContext>
             <viewModels:CommandSampleViewModel/>
         </Grid.DataContext>
@@ -24,7 +28,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="PageTitle" Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="PageTitle" Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFF5DEAC"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -37,19 +41,21 @@
             </Grid.RowDefinitions>
 
             <StackPanel>
-                <TextBlock 
+                <TextBlock  
                     Text="Cafaholic" 
                     Margin="12,0,12,0" 
                     FontSize="{StaticResource PhoneFontSizeLarge}" 
-                    FontFamily="{StaticResource PhoneFontFamilySemiBold}">
+                    FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss"
+                    >
                     <TextBlock.Foreground>
-                        <SolidColorBrush Color="{StaticResource PhoneAccentColor}"/>
+                        <SolidColorBrush Color="#FF8F3400"/>
                     </TextBlock.Foreground>
                 </TextBlock>
                 <TextBlock 
-                    Text="2.0.0" 
+                    FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss"
+                    Text="2.4.12.1" 
                     Margin="12,0,12,0" 
-                    FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                    FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="#FFF5DEAC"/>
             </StackPanel>
 
             <TextBlock 
@@ -78,19 +84,20 @@
             </TextBlock>
             <StackPanel Grid.Row="4" Margin="12,0,12,50" VerticalAlignment="Bottom">
                 <TextBlock 
+                    
                     Text="© Surreal belongings 2014" 
                     Margin="0,12,0,0" 
-                    FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                    FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="#FFF5DEAC"/>
                 <TextBlock 
                     Text="Achieved with Foursquare v2 API" 
-                    FontSize="{StaticResource PhoneFontSizeNormal}"/>
+                    FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="#FFF5DEAC"/>
             </StackPanel>
             <TextBlock 
             	Grid.Row="4"
             	Margin="12,0,12,297" 
             	TextWrapping="Wrap" 
             	FontSize="{StaticResource PhoneFontSizeNormal}" Text="Mandatory Disclosure: 
-Cafaholic uses the Foursquare API for collecting data nearby. Location services used in the app are used for better suggestion of bars/cafes. The developer/company does not guarantee accuracy or precision or both about the data." />
+Cafaholic uses the Foursquare API for collecting data nearby. Location services used in the app are used for better suggestion of bars/cafes. The developer/company does not guarantee accuracy or precision or both about the data." Foreground="#FFF5DEAC" />
             <TextBlock Margin="14,279,10,113" Grid.Row="4" Tap="TextBlock_Tap_1">
             	<Run Text="Developed by:"/>
             	<LineBreak/>

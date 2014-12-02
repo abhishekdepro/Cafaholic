@@ -115,11 +115,11 @@ namespace Cafaholic
             if ((bool)appSettings["LocationConsent"] == true)
             {
                 Geolocator gc = new Geolocator();
-
+                gc.DesiredAccuracyInMeters = 500;
             
                 try
                 {
-                    pos = await gc.GetGeopositionAsync();
+                    pos = await gc.GetGeopositionAsync(maximumAge: TimeSpan.FromMinutes(5),timeout: TimeSpan.FromSeconds(10));
 
                     string latitude = pos.Coordinate.Latitude.ToString();
                     string longitude = pos.Coordinate.Longitude.ToString();
@@ -127,14 +127,19 @@ namespace Cafaholic
                     switch (radius)
                     {
                         case 1:
+                            fs.getccds(latitude, longitude);
                             fs.getcafes(latitude, longitude);
+                           
                             fs.getbars(latitude, longitude);
                             break;
                         case 2:
+                            fs.getccds(latitude, longitude);
                             fs.getcafes2km(latitude, longitude);
+
                             fs.getbars2km(latitude, longitude);
                             break;
                         case 5:
+                            fs.getccds5km(latitude, longitude);
                             fs.getcafes5km(latitude, longitude);
                             fs.getbars5km(latitude, longitude);
                             break;

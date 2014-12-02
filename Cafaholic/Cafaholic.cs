@@ -16,8 +16,6 @@ namespace Cafaholic
     {
         public string client_id = "JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4";
         public string client_secret = "3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH";
-        public static string city;
-        public static string radius="1000";
         public List<String> cafe_venues = new List<string>();
         public List<String> cafe_addresses = new List<string>();
         public List<String> cafe_likes = new List<string>();
@@ -38,6 +36,7 @@ namespace Cafaholic
         public List<String> bar_contact = new List<string>();
         public static bool cafe_loaded = false;
         public static bool bar_loaded = false;
+        public static string city;
         public void getcafes(string _lat, string _long)
         {
             WebClient wc = new WebClient();
@@ -47,6 +46,18 @@ namespace Cafaholic
             wc.DownloadStringAsync(coffee_request);
             //cafeloadcomplete();
         }
+
+        public void getccds(string _lat, string _long)
+        {
+            WebClient wc = new WebClient();
+
+            Uri ccd_request = new Uri("https://api.foursquare.com/v2/venues/search?ll=" + _lat + "," + _long + "&llAcc=1000&radius=2000&query=ccd&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+            wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(CcdCompletedDownload);
+            wc.DownloadStringAsync(ccd_request);
+            //cafeloadcomplete();
+        }
+
+        
 
         public void getbars(string _lat, string _long)
         {
@@ -74,6 +85,16 @@ namespace Cafaholic
             //cafeloadcomplete();
         }
 
+        public void getccds5km(string _lat, string _long)
+        {
+            WebClient wc = new WebClient();
+
+            Uri ccd_request = new Uri("https://api.foursquare.com/v2/venues/search?ll=" + _lat + "," + _long + "&llAcc=1000&radius=5000&query=ccd&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+            wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(CcdCompletedDownload);
+            wc.DownloadStringAsync(ccd_request);
+            //cafeloadcomplete();
+        }
+
         public void getbars2km(string _lat, string _long)
         {
             WebClient wc = new WebClient();
@@ -88,6 +109,85 @@ namespace Cafaholic
             Uri bar_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll=" + _lat + "," + _long + "&llAcc=1000&radius=5000&section=drinks&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(BarCompletedDownload);
             wc.DownloadStringAsync(bar_request);
+        }
+
+        private void CcdCompletedDownload(object sender, DownloadStringCompletedEventArgs e)
+        {
+            try
+            {
+
+                var container = JsonConvert.DeserializeObject(e.Result) as JObject;
+                var _city = container["response"]["headerLocation"];
+                
+                List<JObject> result = container["response"]["venues"].Children()
+                                    .Cast<JObject>()
+
+                                    .ToList();
+
+                foreach (JObject item in result)
+                {
+                    
+                        
+                        var venue = item["name"];
+                        var address = item["location"]["address"];
+                        var latitude = item["location"]["lat"];
+                        var longitude = item["location"]["lng"];
+                        if (null != item["contact"]["phone"])
+                        {
+                            var contact = item["contact"]["phone"];
+                            cafe_contact.Add(contact.ToString());
+                        }
+                        else
+                        {
+                            cafe_contact.Add("None");
+                        }
+                        if (null != item["stats"]["checkinsCount"])
+                        {
+                            var checkins = item["stats"]["checkinsCount"];
+
+                            cafe_checkins.Add(checkins.ToString());
+                        }
+                        else
+                        {
+                            cafe_checkins.Add("0");
+                        }
+
+                        var price = "1";
+                        cafe_price.Add(price.ToString());
+
+
+                        cafe_hours.Add("------------");
+
+
+                        cafe_venues.Add(venue.ToString());
+                        cafe_addresses.Add(address.ToString());
+                        cafe_likes.Add("0");
+                        cafe_lat.Add(latitude.ToString());
+                        cafe_long.Add(longitude.ToString());
+
+
+
+                        App.ViewModel.Items.Clear();
+                        //city = _city.ToString();
+                        if (cafe_venues.Count > 0)
+                        {
+                            App.ViewModel.Items.Clear();
+                            for (int i = 0; i < cafe_venues.Count; i++)
+                            {
+                                App.ViewModel.Items.Add(new ItemViewModel { LineOne = cafe_venues[i], LineTwo = cafe_addresses[i], LineThree = cafe_likes[i], Latitude = cafe_lat[i], Longitude = cafe_long[i], Hours = cafe_hours[i], Rating = cafe_checkins[i], Price = cafe_price[i], Contact = cafe_contact[i] });
+
+                            }
+                        }
+
+
+                    }
+                    
+                }
+            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ran into a problem..Try again.");
+            }
         }
         private void CafeCompletedDownload(object sender, DownloadStringCompletedEventArgs e)
         {
@@ -105,7 +205,7 @@ namespace Cafaholic
                                     .Cast<JObject>()
 
                                     .ToList();
-                if (items.Count == 0)
+                if (items.Count == 0 && App.ViewModel.Items.Count==0)
                     MessageBox.Show("No cafes in your area now!");
                 foreach (JObject item in items)
                 {

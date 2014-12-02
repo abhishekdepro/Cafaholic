@@ -14,6 +14,8 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Telerik.Windows.Controls;
 using Cafaholic.ViewModels;
+using System.Xml;
+using System.Diagnostics;
 
 namespace Cafaholic
 {
@@ -60,7 +62,8 @@ namespace Cafaholic
         {
             // Global handler for uncaught exceptions. 
             UnhandledException += Application_UnhandledException;
-
+            ThemeManager.ToDarkTheme();
+            ThemeManager.SetAccentColor(AccentColor.Brown);
             // Standard Silverlight initialization
             InitializeComponent();
 
@@ -91,7 +94,7 @@ namespace Cafaholic
             diagnostics = new RadDiagnostics();
 
             //Defines the default email where the diagnostics info will be send.
-            diagnostics.EmailTo = "abhishekde@hotmail.com";
+            diagnostics.EmailTo = "surrealbelongings@outlook.com";
             //SolidColorBrush s1=(SolidColorBrush)Resources["AppAccentBrush"];
             Resources.Remove("PhoneAccentColor");
             Resources.Add("PhoneAccentColor", Colors.Brown);
@@ -162,11 +165,49 @@ namespace Cafaholic
         // Code to execute on Unhandled Exceptions
         private void Application_UnhandledException(object sender, ApplicationUnhandledExceptionEventArgs e)
         {
-            if (System.Diagnostics.Debugger.IsAttached)
+            if (e != null)
+            {
+                Exception exception = e.ExceptionObject;
+                if ((exception is XmlException || exception is NullReferenceException) && exception.ToString().ToUpper().Contains("INNERACTIVE"))
+                {
+                    Debug.WriteLine("Handled Inneractive exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                else if (exception is NullReferenceException && exception.ToString().ToUpper().Contains("SOMA"))
+                {
+                    Debug.WriteLine("Handled Smaato null reference exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                else if ((exception is System.IO.IOException || exception is NullReferenceException) && exception.ToString().ToUpper().Contains("GOOGLE"))
+                {
+                    Debug.WriteLine("Handled Google exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                else if (exception is ObjectDisposedException && exception.ToString().ToUpper().Contains("MOBFOX"))
+                {
+                    Debug.WriteLine("Handled Mobfox exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+                else if ((exception is NullReferenceException) && exception.ToString().ToUpper().Contains("MICROSOFT.ADVERTISING"))
+                {
+                    Debug.WriteLine("Handled Microsoft.Advertising exception {0}", exception);
+                    e.Handled = true;
+                    return;
+                }
+
+            }
+            // APP SPECIFIC HANDLING HERE
+
+            if (Debugger.IsAttached)
             {
                 // An unhandled exception has occurred; break into the debugger
-                System.Diagnostics.Debugger.Break();
+                Debugger.Break();
             }
+
         }
 
         #region Phone application initialization
