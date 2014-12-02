@@ -1,4 +1,11 @@
-﻿using Cafaholic.ViewModels;
+﻿/* Cafaholic Core Class Library
+// Author: Abhishek Dey.
+// Version: 2.4.12.1.
+// Description: Contains all functions to fetch data using Foursquare API.
+// Latest: Added Cafe Coffee Day using Search.
+*/
+
+using Cafaholic.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
@@ -11,12 +18,15 @@ using System.Windows;
 
 namespace Cafaholic
 {
-
+	// class deals with all data access to Foursquare RESTful API.
     public class FourSquare
     {
+		//API_Keys.
         public string client_id = "JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4";
         public string client_secret = "3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH";
-        public List<String> cafe_venues = new List<string>();
+        
+		//List objects to store cafe details such as address, rating.
+		public List<String> cafe_venues = new List<string>();
         public List<String> cafe_addresses = new List<string>();
         public List<String> cafe_likes = new List<string>();
         public List<String> cafe_lat = new List<string>();
@@ -25,6 +35,8 @@ namespace Cafaholic
         public List<String> cafe_checkins = new List<string>();
         public List<String> cafe_price = new List<string>();
         public List<String> cafe_contact = new List<string>();
+
+		//List objects to store bar details such as address, rating.
         public List<String> bar_venues = new List<string>();
         public List<String> bar_addresses = new List<string>();
         public List<String> bar_likes = new List<string>();
@@ -34,9 +46,15 @@ namespace Cafaholic
         public List<String> bar_checkins = new List<string>();
         public List<String> bar_price = new List<string>();
         public List<String> bar_contact = new List<string>();
-        public static bool cafe_loaded = false;
+        
+		//optinal boolean responses: if needed.
+		public static bool cafe_loaded = false;
         public static bool bar_loaded = false;
-        public static string city;
+        
+		//optional parameter: if required.
+		public static string city;
+
+		//method to make request for all cafes based on geo-location.
         public void getcafes(string _lat, string _long)
         {
             WebClient wc = new WebClient();
@@ -50,15 +68,13 @@ namespace Cafaholic
         public void getccds(string _lat, string _long)
         {
             WebClient wc = new WebClient();
-
-            Uri ccd_request = new Uri("https://api.foursquare.com/v2/venues/search?ll=" + _lat + "," + _long + "&llAcc=1000&radius=2000&query=ccd&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+			Uri ccd_request = new Uri("https://api.foursquare.com/v2/venues/search?ll=" + _lat + "," + _long + "&llAcc=1000&radius=2000&query=ccd&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(CcdCompletedDownload);
             wc.DownloadStringAsync(ccd_request);
-            //cafeloadcomplete();
         }
 
         
-
+		//method to make request for all cafes based on geo-location.
         public void getbars(string _lat, string _long)
         {
             WebClient wc = new WebClient();
@@ -168,7 +184,6 @@ namespace Cafaholic
 
 
                         App.ViewModel.Items.Clear();
-                        //city = _city.ToString();
                         if (cafe_venues.Count > 0)
                         {
                             App.ViewModel.Items.Clear();
@@ -195,16 +210,12 @@ namespace Cafaholic
             {
                 
                 var container = JsonConvert.DeserializeObject(e.Result) as JObject;
-                //var _city = container["response"]["geocode"]["where"];
-
                 List<JObject> result = container["response"]["groups"].Children()
                                     .Cast<JObject>()
-
-                                    .ToList();
+									.ToList();
                 List<JObject> items = result[0]["items"].Children()
                                     .Cast<JObject>()
-
-                                    .ToList();
+									.ToList();
                 if (items.Count == 0 && App.ViewModel.Items.Count==0)
                     MessageBox.Show("No cafes in your area now!");
                 foreach (JObject item in items)
@@ -213,16 +224,13 @@ namespace Cafaholic
                     {
                         List<JObject> tips = item["tips"].Children()
                                     .Cast<JObject>()
-
-                                    .ToList();
-                        //var likes = tips[0]["likes"]["count"];
+									.ToList();
                         try
                         {
                             var likes = tips[0]["likes"]["count"];
                             cafe_likes.Add(likes.ToString());
                         }
-
-                        catch (Exception ex)
+						catch (Exception ex)
                         {
                             var likes = "0";
                             cafe_likes.Add(likes.ToString());
@@ -249,8 +257,7 @@ namespace Cafaholic
                     if (null != item["venue"]["stats"]["checkinsCount"])
                     {
                         var checkins = item["venue"]["stats"]["checkinsCount"];
-
-                        cafe_checkins.Add(checkins.ToString());
+						cafe_checkins.Add(checkins.ToString());
                     }
                     else
                     {
@@ -278,22 +285,18 @@ namespace Cafaholic
 
                     cafe_venues.Add(venue.ToString());
                     cafe_addresses.Add(address.ToString());
-                    //cafe_likes.Add(likes.ToString());
                     cafe_lat.Add(latitude.ToString());
                     cafe_long.Add(longitude.ToString());
                     
-                    
                 }
                 App.ViewModel.Items.Clear();
-                //city = _city.ToString();
                 if (cafe_venues.Count > 0)
                 {
                     App.ViewModel.Items.Clear();
                     for (int i = 0; i < cafe_venues.Count; i++)
                     {
                         App.ViewModel.Items.Add(new ItemViewModel { LineOne = cafe_venues[i], LineTwo = cafe_addresses[i], LineThree = cafe_likes[i], Latitude= cafe_lat[i], Longitude=cafe_long[i], Hours=cafe_hours[i], Rating=cafe_checkins[i], Price=cafe_price[i], Contact=cafe_contact[i]});
-
-                    }
+					}
                 }
                 
                 
@@ -307,8 +310,6 @@ namespace Cafaholic
         private void BarCompletedDownload(object sender, DownloadStringCompletedEventArgs e)
         {
             var container = JsonConvert.DeserializeObject(e.Result) as JObject;
-            //var _city = container["response"]["geocode"]["where"];
-
             List<JObject> result = container["response"]["groups"].Children()
                                 .Cast<JObject>()
 
@@ -344,7 +345,6 @@ namespace Cafaholic
                 }
                 var venue = item["venue"]["name"];
                 var address = item["venue"]["location"]["address"];
-                //var like = item["venue"]["likes"]["count"];
                 var latitude = item["venue"]["location"]["lat"];
                 var longitude = item["venue"]["location"]["lng"];
                 var price = item["venue"]["price"]["tier"];
@@ -389,7 +389,6 @@ namespace Cafaholic
                 bar_long.Add(longitude.ToString());
                 bar_price.Add(price.ToString());
             }
-            //city = _city.ToString();
             App.ViewModel.Bar.Clear();
             if (bar_venues.Count > 0)
             {
@@ -401,19 +400,6 @@ namespace Cafaholic
             }
             
             
-        }
-
-        public void barloadcomplete()
-        {
-            bar_loaded = true;
-
-            //return bar_loaded;
-        }
-
-        public void cafeloadcomplete()
-        {
-            cafe_loaded = true;
-            //return cafe_loaded;
         }
 
     }
