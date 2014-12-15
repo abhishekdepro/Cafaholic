@@ -59,7 +59,7 @@ namespace Cafaholic
         {
             WebClient wc = new WebClient();
         
-            Uri coffee_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll="+_lat+","+_long+"&llAcc=1000&radius=1000&section=coffee&limit=10&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+            Uri coffee_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll="+_lat+","+_long+"&llAcc=1000&radius=1000&section=coffee&limit=10&openNow=1&client_id=<your_client_id>&client_secret=<your_client_secret>", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(CafeCompletedDownload);
             wc.DownloadStringAsync(coffee_request);
             //cafeloadcomplete();
@@ -68,7 +68,7 @@ namespace Cafaholic
         public void getccds(string _lat, string _long)
         {
             WebClient wc = new WebClient();
-			Uri ccd_request = new Uri("https://api.foursquare.com/v2/venues/search?ll=" + _lat + "," + _long + "&llAcc=1000&radius=2000&query=ccd&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+			Uri ccd_request = new Uri("https://api.foursquare.com/v2/venues/search?ll=" + _lat + "," + _long + "&llAcc=1000&radius=2000&query=ccd&openNow=1&client_id=<your_client_id>&client_secret=<your_client_secret>", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(CcdCompletedDownload);
             wc.DownloadStringAsync(ccd_request);
         }
@@ -78,14 +78,14 @@ namespace Cafaholic
         public void getbars(string _lat, string _long)
         {
             WebClient wc = new WebClient();
-            Uri bar_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll="+_lat+","+_long+"&llAcc=1000&radius=1000&section=drinks&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+			Uri bar_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll="+_lat+","+_long+"&llAcc=1000&radius=1000&section=drinks&openNow=1&client_id=<your_client_id>&client_secret=<your_client_secret>", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(BarCompletedDownload);
             wc.DownloadStringAsync(bar_request);
         }
         public void getcafes2km(string _lat, string _long)
         {
             WebClient wc = new WebClient();
-            Uri coffee_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll=" + _lat + "," + _long + "&llAcc=1000&radius=2000&section=coffee&limit=10&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+			Uri coffee_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll=" + _lat + "," + _long + "&llAcc=1000&radius=2000&section=coffee&limit=10&openNow=1&client_id=<your_client_id>&client_secret=<your_client_secret>", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(CafeCompletedDownload);
             wc.DownloadStringAsync(coffee_request);
         }
@@ -93,7 +93,7 @@ namespace Cafaholic
         public void getcafes5km(string _lat, string _long)
         {
             WebClient wc = new WebClient();
-            Uri coffee_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll=" + _lat + "," + _long + "&llAcc=1000&radius=5000&section=coffee&limit=10&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+			Uri coffee_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll=" + _lat + "," + _long + "&llAcc=1000&radius=5000&section=coffee&limit=10&openNow=1&client_id=<your_client_id>&client_secret=<your_client_secret>", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(CafeCompletedDownload);
             wc.DownloadStringAsync(coffee_request);
         }
@@ -101,7 +101,7 @@ namespace Cafaholic
         public void getccds5km(string _lat, string _long)
         {
             WebClient wc = new WebClient();
-			Uri ccd_request = new Uri("https://api.foursquare.com/v2/venues/search?ll=" + _lat + "," + _long + "&llAcc=1000&radius=5000&query=ccd&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+			Uri ccd_request = new Uri("https://api.foursquare.com/v2/venues/search?ll=" + _lat + "," + _long + "&llAcc=1000&radius=5000&query=ccd&openNow=1&client_id=<your_client_id>&client_secret=<your_client_secret>", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(CcdCompletedDownload);
             wc.DownloadStringAsync(ccd_request);
         }
@@ -109,7 +109,7 @@ namespace Cafaholic
         public void getbars2km(string _lat, string _long)
         {
             WebClient wc = new WebClient();
-            Uri bar_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll=" + _lat + "," + _long + "&llAcc=1000&radius=2000&section=drinks&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+			Uri bar_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll=" + _lat + "," + _long + "&llAcc=1000&radius=2000&section=drinks&openNow=1&client_id=<your_client_id>&client_secret=<your_client_secret>", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(BarCompletedDownload);
             wc.DownloadStringAsync(bar_request);
         }
@@ -117,7 +117,7 @@ namespace Cafaholic
         public void getbars5km(string _lat, string _long)
         {
             WebClient wc = new WebClient();
-            Uri bar_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll=" + _lat + "," + _long + "&llAcc=1000&radius=5000&section=drinks&openNow=1&client_id=JJRQQGJTDLRNZWERBNQ0BTUYS2P4ZVBFA5MWHU5MEEJBINB4&client_secret=3MS1HAACC4RAU253OIT340HODO1CDQIDFZQNNSIMHPB2CVWH&v=20130815", UriKind.Absolute);
+			Uri bar_request = new Uri("https://api.foursquare.com/v2/venues/explore?ll=" + _lat + "," + _long + "&llAcc=1000&radius=5000&section=drinks&openNow=1&client_id=<your_client_id>&client_secret=<your_client_secret>", UriKind.Absolute);
             wc.DownloadStringCompleted += new DownloadStringCompletedEventHandler(BarCompletedDownload);
             wc.DownloadStringAsync(bar_request);
         }
