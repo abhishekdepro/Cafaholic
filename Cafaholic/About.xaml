@@ -28,7 +28,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="PageTitle" Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFF5DEAC"/>
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="PageTitle" Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFF5DEAC"/>
         </StackPanel>
 
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -45,27 +45,26 @@
                     Text="Cafaholic" 
                     Margin="12,0,12,0" 
                     FontSize="{StaticResource PhoneFontSizeLarge}" 
-                    FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss"
+                    FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
                     >
                     <TextBlock.Foreground>
                         <SolidColorBrush Color="#FF8F3400"/>
                     </TextBlock.Foreground>
                 </TextBlock>
                 <TextBlock 
-                    FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss"
+                    FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
                     Text="2.4.12.1" 
                     Margin="12,0,12,0" 
                     FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="#FFF5DEAC"/>
             </StackPanel>
 
-            <TextBlock 
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
                 Grid.Row="1" 
                 Text="Your nearest bar or coffee is just a click away from your Windows Phone."
-                Margin="12,10,12,38" 
+                Margin="12,26,12,22" 
                 TextWrapping="Wrap" 
-                Foreground="{StaticResource PhoneSubtleBrush}" 
-                FontSize="{StaticResource PhoneFontSizeNormal}" />
-            <TextBlock Margin="14,204,10,188" Grid.Row="4" Tap="TextBlock_Tap">
+                Foreground="{StaticResource PhoneSubtleBrush}" FontSize="25" />
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"  Margin="12,238,12,204" Grid.Row="4" Tap="TextBlock_Tap" FontSize="25">
             	<Run Text="Feedback/ Technical Support:"/>
             	<LineBreak/>
             	<Run Text="abhishekde@hotmail.com">
@@ -83,22 +82,19 @@
 
             </TextBlock>
             <StackPanel Grid.Row="4" Margin="12,0,12,50" VerticalAlignment="Bottom">
-                <TextBlock 
+                <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
                     
                     Text="© Surreal belongings 2014" 
-                    Margin="0,12,0,0" 
-                    FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="#FFF5DEAC"/>
-                <TextBlock 
-                    Text="Achieved with Foursquare v2 API" 
-                    FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="#FFF5DEAC"/>
+                    Margin="0,12,0,0" Foreground="#FFF5DEAC" FontSize="25"/>
+                <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
+                    Text="Achieved with Foursquare v2 API" Foreground="#FFF5DEAC" FontSize="25"/>
             </StackPanel>
-            <TextBlock 
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
             	Grid.Row="4"
-            	Margin="12,0,12,297" 
-            	TextWrapping="Wrap" 
-            	FontSize="{StaticResource PhoneFontSizeNormal}" Text="Mandatory Disclosure: 
-Cafaholic uses the Foursquare API for collecting data nearby. Location services used in the app are used for better suggestion of bars/cafes. The developer/company does not guarantee accuracy or precision or both about the data." Foreground="#FFF5DEAC" />
-            <TextBlock Margin="14,279,10,113" Grid.Row="4" Tap="TextBlock_Tap_1">
+            	Margin="12,26,12,316" 
+            	TextWrapping="Wrap" Text="Mandatory Disclosure: 
+Cafaholic uses the Foursquare API for collecting data nearby. Location services used in the app are used for better suggestion of bars/cafes. The developer/company does not guarantee accuracy or precision or both about the data." Foreground="#FFF5DEAC" FontSize="25" />
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"  Margin="12,300,12,129" Grid.Row="4" Tap="TextBlock_Tap_1" FontSize="25">
             	<Run Text="Developed by:"/>
             	<LineBreak/>
             	<Run Text="Abhishek Dey">

@@ -16,6 +16,7 @@ using Windows.Devices.Geolocation;
 using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
 using System.Windows.Navigation;
+using Parse;
 
 namespace Cafaholic
 {
@@ -377,6 +378,13 @@ namespace Cafaholic
                 appSettings["LocationConsent"] = false;
                 appSettings.Save();
             }
+        }
+
+        private async void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            browser.Visibility = Visibility.Visible;
+            ParseUser user = await ParseFacebookUtils.LogInAsync(browser, new[] { "email" });
+            browser.Visibility = Visibility.Collapsed;
         }
 
         

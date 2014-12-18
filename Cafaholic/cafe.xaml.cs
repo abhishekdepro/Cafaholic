@@ -59,7 +59,7 @@ namespace Cafaholic
 
             BitmapImage bi3 = new BitmapImage();
 
-            bi3.UriSource = new Uri("/Assets/push.ico", UriKind.Relative);
+            bi3.UriSource = new Uri("/Assets/map_night.png", UriKind.Relative);
             //bi3.EndInit();
 
             MapOverlay overlay = new MapOverlay
@@ -95,7 +95,7 @@ namespace Cafaholic
 
             BitmapImage bi3 = new BitmapImage();
 
-            bi3.UriSource = new Uri("/Assets/push.ico", UriKind.Relative);
+            bi3.UriSource = new Uri("/Assets/map_night.png", UriKind.Relative);
             //bi3.EndInit();
 
             MapOverlay overlay = new MapOverlay
@@ -160,6 +160,20 @@ namespace Cafaholic
             {
                 MessageBox.Show("Invalid number");
             }
+        }
+
+        private void addr_tb_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            double desiredHeight = 80;
+
+            if (this.addr_tb.ActualHeight > desiredHeight)
+            {
+                double fontsizeMultiplier = Math.Sqrt(desiredHeight / this.addr_tb.ActualHeight);
+                this.addr_tb.FontSize = Math.Floor(this.addr_tb.FontSize * fontsizeMultiplier);
+            }
+
+            this.addr_tb.Height = desiredHeight; // ActualHeight will be changed if the text is too big, after the text was resized, but in the end you want the box to be as big as the desiredHeight.
+
         }
     }
 

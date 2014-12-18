@@ -10,7 +10,7 @@
     xmlns:telerikInput="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Input"
     xmlns:telerikToggleSwitch="clr-namespace:Telerik.Windows.Controls.ToggleSwitch;assembly=Telerik.Windows.Controls.Primitives"
     xmlns:adduplex="clr-namespace:AdDuplex;assembly=AdDuplex.WindowsPhone"
-    
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:WindowsPhone8="clr-namespace:Microsoft.AdMediator.WindowsPhone8;assembly=Microsoft.AdMediator.WindowsPhone8"
     
     x:Class="Cafaholic.MainPage"
@@ -37,70 +37,52 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <!-- LOCALIZATION NOTE:
-            To localize the displayed strings copy their values to appropriately named
-            keys in the app's neutral language resource file (AppResources.resx) then
-            replace the hard-coded text value between the attributes' quotation marks
-            with the binding clause whose path points to that string name.
-
-            For example:
-
-                Text="{Binding Path=LocalizedResources.ApplicationTitle, Source={StaticResource LocalizedStrings}}"
-
-            This binding points to the template's string resource named "ApplicationTitle".
-
-            Adding supported languages in the Project Properties tab will create a
-            new resx file per language that can carry the translated values of your
-            UI strings. The binding in these examples will cause the value of the
-            attributes to be drawn from the .resx file that matches the
-            CurrentUICulture of the app at run time.
-         -->
-
-        <!--Uncomment to see an alignment grid to help ensure your controls are
-            aligned on common boundaries.  The image has a top margin of -32px to
-            account for the System Tray. Set this to 0 (or remove the margin altogether)
-            if the System Tray is hidden.
-
-            Before shipping remove this XAML and the image itself.-->
-        <!--<Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />-->
-
-        <!--Panorama control-->
+        
         <phone:Panorama Title="cafaholic ☕" HorizontalAlignment="Center" TitleTemplate="{StaticResource TitlePanaroma}" x:Name="main" Foreground="#FFF5DEAC" Height="798" VerticalAlignment="Bottom" Margin="0,-30,0,0">
             <phone:Panorama.Background>
                 <ImageBrush ImageSource="/Assets/coffee.jpg" Opacity="0.3" Stretch="UniformToFill"/>
             </phone:Panorama.Background>
 
             <phone:PanoramaItem Header="Settings" HeaderTemplate="{StaticResource MyItemHeaderTemplate}" FontSize="20" FontFamily="/Assets/Font/Quirky Nots.otf#Quirky Nots" Foreground="#FFF5DEAC">
-                <Grid Margin="0,1,0,0" Width="433">
-                    <!--Grid.Background>
-                        <SolidColorBrush Color="Black" Opacity="0.5"/>
-                    </-->
-                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Radius (in kilometeres):" VerticalAlignment="Top" Margin="23,10,0,0" Width="356" FontSize="26"/>
+                <Grid Margin="0,-38,0,0" Width="433">
+              
+                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Radius (in kilometers):" VerticalAlignment="Top" Margin="23,47,0,0" Width="356" FontSize="30"/>
                     <Grid HorizontalAlignment="Left" Height="119" VerticalAlignment="Top" Width="420" Margin="0,47,0,0"/>
-                    <RadioButton FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="twokm" Content="2 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,66,0,0" GroupName="" Checked="twokm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400"/>
-                    <RadioButton FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="fivekm" Content="5 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="259,66,0,0" GroupName="" Checked="fivekm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400"/>
-                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="barToggle" HorizontalAlignment="Left" Margin="23,138,0,0" VerticalAlignment="Top" Width="356" Content="Turn Bars Off" Checked="barToggle_Checked" Unchecked="barToggle_Unchecked">
+                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="twokm" Content="2 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,73,0,0" GroupName="" Checked="twokm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30"/>
+                    
+                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="fivekm" Content="5 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="259,73,0,0" GroupName="" Checked="fivekm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30"/>
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="barToggle" HorizontalAlignment="Left" Margin="23,145,0,0" VerticalAlignment="Top" Width="364" Content="Turn Bars Off" Checked="barToggle_Checked" Unchecked="barToggle_Unchecked">
                         <telerikPrimitives:RadToggleSwitch.ButtonStyle>
                             <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
                                 <Setter Property="CheckBackground" Value="#FF8F3400"/>
                             </Style>
                         </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="cafeToggle" HorizontalAlignment="Left" Margin="23,214,0,0" VerticalAlignment="Top" Width="356" Content="Turn Cafes off" Checked="cafeToggle_Checked" Unchecked="cafeToggle_Unchecked">
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="cafeToggle" HorizontalAlignment="Left" Margin="23,209,0,0" VerticalAlignment="Top" Width="364" Content="Turn Cafes off" Checked="cafeToggle_Checked" Unchecked="cafeToggle_Unchecked">
                         <telerikPrimitives:RadToggleSwitch.ButtonStyle>
                             <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
                                 <Setter Property="CheckBackground" Value="#FF8F3400"/>
                             </Style>
                         </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" x:Name="locationToggle" HorizontalAlignment="Left" Margin="23,291,0,0" VerticalAlignment="Top" Width="356" Content="Location" Checked="locationToggle_Checked" Unchecked="locationToggle_Unchecked">
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="locationToggle" HorizontalAlignment="Left" Margin="23,278,0,0" VerticalAlignment="Top" Width="364" Content="Location" Checked="locationToggle_Checked" Unchecked="locationToggle_Unchecked">
                         <telerikPrimitives:RadToggleSwitch.ButtonStyle>
                             <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
                                 <Setter Property="CheckBackground" Value="#FF8F3400"/>
                             </Style>
                         </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <WindowsPhone8:AdMediatorControl x:Name="AdMediator_BD1F90" HorizontalAlignment="Left" Height="110" Id="AdMediator-Id-CA627562-138C-4A9C-96C2-5657AB6DC711" VerticalAlignment="Top" Width="410" Margin="23,375,0,0"/>
+                    <WindowsPhone8:AdMediatorControl x:Name="AdMediator_BD1F90" HorizontalAlignment="Left" Height="92" Id="AdMediator-Id-CA627562-138C-4A9C-96C2-5657AB6DC711" VerticalAlignment="Top" Width="423" Margin="10,492,0,0"/>
+                    <Ellipse Fill="Black" HorizontalAlignment="Left" Height="100" Stroke="#FFE65400" StrokeThickness="3" VerticalAlignment="Top" Width="100" Margin="23,349,0,0" Opacity="0.3"/>
+                    <Ellipse Fill="Black" HorizontalAlignment="Left" Height="100" Stroke="#FFE65400" StrokeThickness="3" VerticalAlignment="Top" Width="100" Margin="157,349,0,0" Opacity="0.3"/>
+                    <Ellipse Fill="Black" HorizontalAlignment="Left" Height="100" Stroke="#FFE65400" StrokeThickness="3" VerticalAlignment="Top" Width="100" Margin="287,349,0,0" Opacity="0.3"/>
+                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="23,349,0,0" Source="/Assets/favs.png"/>
+                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="157,349,0,0" Source="/Assets/status.png" Tap="Image_Tap"/>
+                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="287,349,0,0" Source="/Assets/map.png"/>
+                    <phone:WebBrowser x:Name="browser" HorizontalAlignment="Left" VerticalAlignment="Top" Height="762" Width="484" Margin="-20,-200,-31,0" Visibility="Collapsed"/>
+                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Favorites" VerticalAlignment="Top" Width="100" Margin="23,454,0,0" TextAlignment="Center"/>
+                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="100" Margin="157,454,0,0" TextAlignment="Center"/>
+                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Checkins" VerticalAlignment="Top" Width="100" Margin="287,454,0,0" TextAlignment="Center"/>
 
 
 
@@ -127,14 +109,26 @@
                                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                                 </-->
                                 <!--Replace rectangle with image-->
+                                <toolkit:ContextMenuService.ContextMenu>
+
+                                    <toolkit:ContextMenu IsZoomEnabled="True" x:Name="ContextMenu" >
+
+                                        <toolkit:MenuItem x:Name="Favorite" Header="Favorite" />
+
+                                        <toolkit:MenuItem x:Name="Check-in" Header="Checkin" />
+                                     </toolkit:ContextMenu>
+
+                                </toolkit:ContextMenuService.ContextMenu>
+
+
                                 <Grid Width="103">
-                                    <TextBlock  FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center" Foreground="#FF8F3400"/>
-                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock  FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center" Foreground="#FF8F3400"/>
+                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
 
                                 </Grid>
                                 <StackPanel Width="311">
-                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
-                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
+                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -155,13 +149,13 @@
                                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                                 </-->
                                 <Grid Width="103">
-                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center" Foreground="#FF8F3400"/>
-                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center" Foreground="#FF8F3400"/>
+                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
 
                                 </Grid>
                                 <StackPanel Width="311">
-                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
-                                    <TextBlock FontFamily="/Assets/Font/Our First Kiss.otf#Our First Kiss" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
+                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>

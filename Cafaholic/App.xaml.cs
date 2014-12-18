@@ -16,6 +16,7 @@ using Telerik.Windows.Controls;
 using Cafaholic.ViewModels;
 using System.Xml;
 using System.Diagnostics;
+using Parse;
 
 namespace Cafaholic
 {
@@ -61,6 +62,11 @@ namespace Cafaholic
         public App()
         {
             // Global handler for uncaught exceptions. 
+            this.InitializeComponent();
+            
+            ParseClient.Initialize("Nt8LzvOwvqelSGSosFMjGPpGXgTekmtRv5FsCNEb", "xhJyck0JDtCQB6XVxEeTV2HnS0Kzfz6mw3mDwIvI");
+            ParseFacebookUtils.Initialize("339023869615738");
+
             UnhandledException += Application_UnhandledException;
             ThemeManager.ToDarkTheme();
             ThemeManager.SetAccentColor(AccentColor.Brown);
@@ -116,7 +122,9 @@ namespace Cafaholic
         {
             //Before using any of the ApplicationBuildingBlocks, this class should be initialized with the version of the application.
             ApplicationUsageHelper.Init("1.0");
-        
+            
+
+
         }
 
         // Code to execute when the application is activated (brought to foreground)
