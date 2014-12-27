@@ -23,6 +23,9 @@
   shell:SystemTray.IsVisible="True" Background="Black"
     shell:SystemTray.Opacity="0.3">
 
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator x:Name="Progress" IsIndeterminate="True" IsVisible="True" Text="Brewing up..."/>
+    </shell:SystemTray.ProgressIndicator>
 
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
@@ -37,52 +40,48 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        
-        <phone:Panorama Title="cafaholic ☕" HorizontalAlignment="Center" TitleTemplate="{StaticResource TitlePanaroma}" x:Name="main" Foreground="#FFF5DEAC" Height="798" VerticalAlignment="Bottom" Margin="0,-30,0,0">
+
+        <phone:Panorama Title="cafaholic☕" HorizontalAlignment="Center" TitleTemplate="{StaticResource TitlePanaroma}" x:Name="main" Foreground="#FFF5DEAC" Height="798" VerticalAlignment="Bottom" Margin="0,-30,0,0">
             <phone:Panorama.Background>
                 <ImageBrush ImageSource="/Assets/coffee.jpg" Opacity="0.3" Stretch="UniformToFill"/>
             </phone:Panorama.Background>
 
             <phone:PanoramaItem Header="Settings" HeaderTemplate="{StaticResource MyItemHeaderTemplate}" FontSize="20" FontFamily="/Assets/Font/Quirky Nots.otf#Quirky Nots" Foreground="#FFF5DEAC">
                 <Grid Margin="0,-38,0,0" Width="433">
-              
-                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Radius (in kilometers):" VerticalAlignment="Top" Margin="23,47,0,0" Width="356" FontSize="30"/>
+
+                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Radius (in kilometers):" VerticalAlignment="Top" Margin="23,21,0,0" Width="356" FontSize="30"/>
                     <Grid HorizontalAlignment="Left" Height="119" VerticalAlignment="Top" Width="420" Margin="0,47,0,0"/>
-                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="twokm" Content="2 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,73,0,0" GroupName="" Checked="twokm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30"/>
-                    
-                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="fivekm" Content="5 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="259,73,0,0" GroupName="" Checked="fivekm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30"/>
-                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="barToggle" HorizontalAlignment="Left" Margin="23,145,0,0" VerticalAlignment="Top" Width="364" Content="Turn Bars Off" Checked="barToggle_Checked" Unchecked="barToggle_Unchecked">
+                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="twokm" Content="2 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,64,0,0" GroupName="" Checked="twokm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30"/>
+
+                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="fivekm" Content="5 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="259,64,0,0" GroupName="" Checked="fivekm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30"/>
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="barToggle" HorizontalAlignment="Left" Margin="23,225,0,0" VerticalAlignment="Top" Width="364" Content="Turn Bars Off" Checked="barToggle_Checked" Unchecked="barToggle_Unchecked">
                         <telerikPrimitives:RadToggleSwitch.ButtonStyle>
                             <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
                                 <Setter Property="CheckBackground" Value="#FF8F3400"/>
                             </Style>
                         </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="cafeToggle" HorizontalAlignment="Left" Margin="23,209,0,0" VerticalAlignment="Top" Width="364" Content="Turn Cafes off" Checked="cafeToggle_Checked" Unchecked="cafeToggle_Unchecked">
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="cafeToggle" HorizontalAlignment="Left" Margin="23,289,0,0" VerticalAlignment="Top" Width="364" Content="Turn Cafes Off" Checked="cafeToggle_Checked" Unchecked="cafeToggle_Unchecked">
                         <telerikPrimitives:RadToggleSwitch.ButtonStyle>
                             <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
                                 <Setter Property="CheckBackground" Value="#FF8F3400"/>
                             </Style>
                         </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="locationToggle" HorizontalAlignment="Left" Margin="23,278,0,0" VerticalAlignment="Top" Width="364" Content="Location" Checked="locationToggle_Checked" Unchecked="locationToggle_Unchecked">
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="locationToggle" HorizontalAlignment="Left" Margin="23,358,0,0" VerticalAlignment="Top" Width="364" Content="Location" Checked="locationToggle_Checked" Unchecked="locationToggle_Unchecked">
                         <telerikPrimitives:RadToggleSwitch.ButtonStyle>
                             <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
                                 <Setter Property="CheckBackground" Value="#FF8F3400"/>
                             </Style>
                         </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <WindowsPhone8:AdMediatorControl x:Name="AdMediator_BD1F90" HorizontalAlignment="Left" Height="92" Id="AdMediator-Id-CA627562-138C-4A9C-96C2-5657AB6DC711" VerticalAlignment="Top" Width="423" Margin="10,492,0,0"/>
-                    <Ellipse Fill="Black" HorizontalAlignment="Left" Height="100" Stroke="#FFE65400" StrokeThickness="3" VerticalAlignment="Top" Width="100" Margin="23,349,0,0" Opacity="0.3"/>
-                    <Ellipse Fill="Black" HorizontalAlignment="Left" Height="100" Stroke="#FFE65400" StrokeThickness="3" VerticalAlignment="Top" Width="100" Margin="157,349,0,0" Opacity="0.3"/>
-                    <Ellipse Fill="Black" HorizontalAlignment="Left" Height="100" Stroke="#FFE65400" StrokeThickness="3" VerticalAlignment="Top" Width="100" Margin="287,349,0,0" Opacity="0.3"/>
-                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="23,349,0,0" Source="/Assets/favs.png"/>
-                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="157,349,0,0" Source="/Assets/status.png" Tap="Image_Tap"/>
-                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="287,349,0,0" Source="/Assets/map.png"/>
-                    <phone:WebBrowser x:Name="browser" HorizontalAlignment="Left" VerticalAlignment="Top" Height="762" Width="484" Margin="-20,-200,-31,0" Visibility="Collapsed"/>
-                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Favorites" VerticalAlignment="Top" Width="100" Margin="23,454,0,0" TextAlignment="Center"/>
-                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="100" Margin="157,454,0,0" TextAlignment="Center"/>
-                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Checkins" VerticalAlignment="Top" Width="100" Margin="287,454,0,0" TextAlignment="Center"/>
+                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="23,426,0,0" Source="/Assets/favs.png" Tap="Image_Tap"/>
+                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="111" Margin="157,426,0,0" Source="/Assets/status.png" Tap="Image_Tap_1" RenderTransformOrigin="0.579,0.482" Stretch="Fill"/>
+                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="287,426,0,0" Source="/Assets/pushpin.png" Tap="Image_Tap_2"/>
+                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Favorites" VerticalAlignment="Top" Width="100" Margin="23,526,0,0" TextAlignment="Center"/>
+                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="99" Margin="157,526,0,0" TextAlignment="Center"/>
+                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Checkins" VerticalAlignment="Top" Width="100" Margin="287,526,0,0" TextAlignment="Center"/>
+                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="any" Content="Anywhere nearby" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,123,0,0" GroupName="" Checked="any_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30" Width="356"/>
 
 
 
@@ -113,22 +112,23 @@
 
                                     <toolkit:ContextMenu IsZoomEnabled="True" x:Name="ContextMenu" >
 
-                                        <toolkit:MenuItem x:Name="Favorite" Header="Favorite" />
+                                        <toolkit:MenuItem x:Name="Favorite" Header="Favorite" Click="Favorite_Click" />
 
-                                        <toolkit:MenuItem x:Name="Check-in" Header="Checkin" />
-                                     </toolkit:ContextMenu>
+                                        <toolkit:MenuItem x:Name="Checkin" Header="Checkin" Click="Checkin_Click"/>
+                                    </toolkit:ContextMenu>
 
                                 </toolkit:ContextMenuService.ContextMenu>
 
 
                                 <Grid Width="103">
-                                    <TextBlock  FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center" Foreground="#FF8F3400"/>
+                                    <TextBlock  FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="83" Width="103" FontSize="72" TextAlignment="Center" Foreground="#FF8F3400"/>
                                     <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
 
                                 </Grid>
                                 <StackPanel Width="311">
                                     <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
                                     <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -148,6 +148,16 @@
                                 <!--StackPanel.Background>
                                     <SolidColorBrush Color="Black" Opacity="0.5"/>
                                 </-->
+                                <toolkit:ContextMenuService.ContextMenu>
+
+                                    <toolkit:ContextMenu IsZoomEnabled="True" x:Name="ContextMenu" >
+
+                                        <toolkit:MenuItem x:Name="Favorite" Header="Favorite" Click="Favorite_Click" />
+
+                                        <toolkit:MenuItem x:Name="Check-in" Header="Checkin" />
+                                    </toolkit:ContextMenu>
+
+                                </toolkit:ContextMenuService.ContextMenu>
                                 <Grid Width="103">
                                     <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center" Foreground="#FF8F3400"/>
                                     <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>

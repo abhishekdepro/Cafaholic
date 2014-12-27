@@ -162,7 +162,7 @@ namespace Cafaholic
             }
         }
 
-        private void addr_tb_SizeChanged(object sender, SizeChangedEventArgs e)
+        public void addr_tb_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double desiredHeight = 80;
 

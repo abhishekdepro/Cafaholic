@@ -41,6 +41,9 @@
         </TemplateIconic>
       </PrimaryToken>
     </Tokens>
+    <Extensions>
+      <Protocol Name="msft-8137748ed4fb4eeba871d20e41b0fb50" NavUriFragment="encodedLaunchUri=%s" TaskID="_default" />
+    </Extensions>
     <ScreenResolutions>
       <ScreenResolution Name="ID_RESOLUTION_WVGA" />
       <ScreenResolution Name="ID_RESOLUTION_WXGA" />

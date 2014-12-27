@@ -17,13 +17,19 @@ using Cafaholic.ViewModels;
 using System.Xml;
 using System.Diagnostics;
 using Parse;
+using Facebook;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.IO.IsolatedStorage;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace Cafaholic
 {
     public partial class App : Application
     {
         private static MainViewModel viewModel = null;
-
+        private static PersonalizationViewModel fav = null;
+        public static IsolatedStorageSettings appSettings = IsolatedStorageSettings.ApplicationSettings;
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
@@ -39,6 +45,18 @@ namespace Cafaholic
                 return viewModel;
             }
         }
+        //private static PersonalizationViewModel fav = null;
+        public static PersonalizationViewModel PersonalizedViewModel
+        {
+            get
+            {
+                // Delay creation of the view model until necessary
+                if (fav == null)
+                    fav = new PersonalizationViewModel();
+
+                return fav;
+            }
+        }
 
         /// <summary>
         /// Component used to handle unhandle exceptions, to collect runtime info and to send email to developer.
@@ -49,7 +67,10 @@ namespace Cafaholic
         /// </summary>
         public RadRateApplicationReminder rateReminder;
 
-        
+        public static MobileServiceClient MobileService = new MobileServiceClient(
+            "https://cafaholic.azure-mobile.net/",
+            "upGwimXWTXuzqKqEBEzIUGyjfqnsgS12"
+            ); 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
         /// </summary>
@@ -64,9 +85,7 @@ namespace Cafaholic
             // Global handler for uncaught exceptions. 
             this.InitializeComponent();
             
-            ParseClient.Initialize("Nt8LzvOwvqelSGSosFMjGPpGXgTekmtRv5FsCNEb", "xhJyck0JDtCQB6XVxEeTV2HnS0Kzfz6mw3mDwIvI");
-            ParseFacebookUtils.Initialize("339023869615738");
-
+            
             UnhandledException += Application_UnhandledException;
             ThemeManager.ToDarkTheme();
             ThemeManager.SetAccentColor(AccentColor.Brown);
@@ -121,7 +140,7 @@ namespace Cafaholic
         private void Application_Launching(object sender, LaunchingEventArgs e)
         {
             //Before using any of the ApplicationBuildingBlocks, this class should be initialized with the version of the application.
-            ApplicationUsageHelper.Init("1.0");
+            ApplicationUsageHelper.Init("3.0");
             
 
 
@@ -129,19 +148,20 @@ namespace Cafaholic
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
-        private void Application_Activated(object sender, ActivatedEventArgs e)
+        private async void Application_Activated(object sender, ActivatedEventArgs e)
         {
             if (!e.IsApplicationInstancePreserved)
             {
                 //This will ensure that the ApplicationUsageHelper is initialized again if the application has been in Tombstoned state.
                 ApplicationUsageHelper.OnApplicationActivated();
-            } 
- 
-    
+            }
+
+            //await ParseInstallation.CurrentInstallation.SaveAsync();
             // Ensure that application state is restored appropriately
             if (!App.ViewModel.IsDataLoaded)
             {
                 App.ViewModel.LoadData();
+                App.PersonalizedViewModel.LoadData();
             }
 
             
@@ -229,11 +249,13 @@ namespace Cafaholic
             if (phoneApplicationInitialized)
                 return;
 
+           
+
             // Create the frame but don't set it as RootVisual yet; this allows the splash
             // screen to remain active until the application is ready to render.
             RootFrame = new RadPhoneApplicationFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
-
+           
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;
 

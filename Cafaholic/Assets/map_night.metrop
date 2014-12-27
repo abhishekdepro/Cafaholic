@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<IconProject Version="2.0" Name="map_night">
-  <Icon Name="Maps -04" HasCharacterMap="false" Data="M302.078,150.63C215.838,150.63 146.017,217.819 146.017,300.633 146.017,383.491 215.838,450.634 302.078,450.634 388.32,450.634 458.14,383.491 458.14,300.633 458.14,217.819 388.32,150.63 302.078,150.63z M302.078,0C468.819,-1E-06 604,129.965 604,290.246 604,346.574 587.421,399.086 558.407,443.602L431.838,698.492 302.078,960 172.16,698.492 45.5906,443.541C16.7368,399.071 -2E-06,346.557 0,290.246 -2E-06,129.965 135.178,-1E-06 302.078,0z" IsDirty="false" Location="Mobile Application" GroupName="Mobile Application" ExportCommand="MetroGraphicsPackage.IconCommand">
-    <Settings MainWidth="48" MainHeight="48" FlipX="1" FlipY="1" CustomSize="48" IconShape="None" BackgroundBrush="#FFFFF9F9" ContentWidth="26" ContentHeight="26" Angle="0" IsRect="false" SizeIndex="4" CustomWidth="48" CustomHeight="48" IsLinked="false" Padding="11" MaximumPadding="15" SldierValueChanged="MetroGraphicsPackage.IconCommand" IconBrush="#FF000000" FontFamily="Webdings" Character="&gt;" FlipCommand="MetroGraphicsPackage.IconCommand" IsBackgroundVisible="true" />
-  </Icon>
-</IconProject>

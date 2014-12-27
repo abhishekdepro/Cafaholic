@@ -25,9 +25,9 @@
 
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-    <Grid x:Name="LayoutRoot" Margin="0,10,0,0">
+    <Grid x:Name="LayoutRoot" Margin="0,-32,0,0">
         <Grid.Background>
-            <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/coffee.jpg" Opacity="0.4"/>
+            <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/coffee.jpg" Opacity="0.3"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -35,9 +35,8 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock  Foreground="#FFF5DEAC" Margin="9,-7,0,0" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Style="{StaticResource PhoneTextTitle1Style}" Text="{Binding LineOne}" FontSize="52" Height="92" TextTrimming="WordEllipsis"/>
-        </StackPanel>
+        <TextBlock  Foreground="#FFF5DEAC" Margin="12,63,12,676" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Style="{StaticResource PhoneTextTitle1Style}" Text="{Binding LineOne}" FontSize="52" TextTrimming="WordEllipsis" Grid.RowSpan="2" TextAlignment="Center"/>
+
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Margin="12,95,12,0" Grid.RowSpan="2">
@@ -68,7 +67,7 @@
             <TextBlock x:Name="caller" Foreground="#FFF5DEAC" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Contact}" VerticalAlignment="Top" Margin="160,200,0,0" Width="285" Height="41" FontSize="30" Tap="caller_Tap"/>
 
         </Grid>
-        <Controls:Map x:Name="myMap" ColorMode="Light"  LandmarksEnabled="True" CartographicMode="Road" Pitch="45" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,363,0,0" Grid.Row="1" Height="255" Width="458" Loaded="myMap_Loaded" BorderThickness="2" Tap="myMap_Tap">
+        <Controls:Map x:Name="myMap" ColorMode="Light"  LandmarksEnabled="True" CartographicMode="Road" Pitch="45" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,520,0,0" Grid.Row="1" Height="255" Width="458" Loaded="myMap_Loaded" BorderThickness="2" Tap="myMap_Tap">
 
             <toolkit:MapExtensions.Children>
                 <toolkit:Pushpin x:Name="MyPushpin">

@@ -17,9 +17,51 @@ using Microsoft.Phone.Shell;
 using System.IO.IsolatedStorage;
 using System.Windows.Navigation;
 using Parse;
+using Microsoft.WindowsAzure.MobileServices;
+using Newtonsoft.Json;
 
 namespace Cafaholic
 {
+    public class Favorites
+    {
+        public string Id { get; set; }
+
+        [JsonProperty(PropertyName = "User")]
+        public string User { get; set; }
+
+        [JsonProperty(PropertyName = "Venue")]
+        public string Venue { get; set; }
+
+        [JsonProperty(PropertyName = "Address")]
+        public string Address { get; set; }
+        [JsonProperty(PropertyName = "Likes")]
+        public string Likes { get; set; }
+        private string _price;
+        [JsonProperty(PropertyName = "Price")]
+        public string Price { 
+            
+            get{
+                if (_price == "1")
+                {
+                    return "$";
+                }
+                else if (_price == "2")
+                {
+                    return "$$";
+                }
+                else
+                    return "$$$";
+            }
+            set {
+                if(value != _price)
+                    _price = value;
+            } 
+        }
+        [JsonProperty(PropertyName = "Contact")]
+        public string Contact { get; set; }
+        [JsonProperty(PropertyName = "Category")]
+        public string Category { get; set; }
+    }
     public partial class MainPage : PhoneApplicationPage
     {
         public Geoposition pos;
@@ -96,7 +138,23 @@ namespace Cafaholic
             
         }
 
-        
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            NavigationService.RemoveBackEntry();
+            
+
+            /*if (NavigationService.BackStack.Any())
+            {
+                var length = NavigationService.BackStack.Count() - 1;
+                var i = 0;
+                while (i < length)
+                {
+                    NavigationService.RemoveBackEntry();
+                    i++;
+                }
+            }*/
+
+        }
 
         private async void getGeoLocation(int radius)
         {
@@ -144,7 +202,13 @@ namespace Cafaholic
                             fs.getcafes5km(latitude, longitude);
                             fs.getbars5km(latitude, longitude);
                             break;
+                        case 10:
+                            //fs.getccdsanywhere(latitude, longitude);
+                            fs.getcafesanywhere(latitude, longitude);
+                            fs.getbarsanywhere(latitude, longitude);
+                            break;
                     }
+                    Progress.IsVisible = false;
 					
                 }
                 catch (Exception ex)
@@ -158,13 +222,33 @@ namespace Cafaholic
             }
         }
 
-        void MainPage_Loaded(object sender, RoutedEventArgs e)
+        async void MainPage_Loaded(object sender, RoutedEventArgs e)
         {
+            if (Login.appSettings.Contains("count")==false)
+            {
+                Login.appSettings["count"] = "0";
+            }
             if (!App.ViewModel.IsDataLoaded)
 
             {
                 
                 App.ViewModel.LoadData();
+                try
+                {
+                    if (Login.appSettings.Contains("user") && Login.appSettings["user"].ToString()!="")
+                    {
+                        await App.PersonalizedViewModel.LoadData();
+                        if (Login.appSettings["count"].ToString() != App.PersonalizedViewModel.favorites.Count.ToString())
+                        {
+                            Login.appSettings["count"] = App.PersonalizedViewModel.favorites.Count.ToString();
+                        }
+                    }
+                    Progress.IsVisible = false;
+                }
+                catch (Exception ex)
+                {
+                    Progress.Text = "Cannot fetch data! No Internet!";
+                }
             }
             //main.Title = FourSquare.city;
         }
@@ -179,7 +263,7 @@ namespace Cafaholic
 
         private void twokm_Checked(object sender, RoutedEventArgs e)
         {
-            
+            Progress.IsVisible = true;
             getGeoLocation(2);
             main.DefaultItem = main.Items[1];
             
@@ -187,13 +271,22 @@ namespace Cafaholic
 
         private void fivekm_Checked(object sender, RoutedEventArgs e)
         {
+            Progress.IsVisible = true;
             getGeoLocation(5);
             main.DefaultItem = main.Items[1];
             
         }
 
+        private void any_Checked(object sender, RoutedEventArgs e)
+        {
+            Progress.IsVisible = true;
+            getGeoLocation(10);
+            main.DefaultItem = main.Items[1];
+        }
+
         private void onekm_Checked(object sender, RoutedEventArgs e)
         {
+            Progress.IsVisible = true;
             getGeoLocation(1);
             main.DefaultItem = main.Items[1];
         }
@@ -380,11 +473,123 @@ namespace Cafaholic
             }
         }
 
-        private async void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        
+
+        private MobileServiceCollection<Favorites, Favorites> items;
+        private IMobileServiceTable<Favorites> Favorites = App.MobileService.GetTable<Favorites>();
+        private async void Favorite_Click(object sender, RoutedEventArgs e)
         {
-            browser.Visibility = Visibility.Visible;
-            ParseUser user = await ParseFacebookUtils.LogInAsync(browser, new[] { "email" });
-            browser.Visibility = Visibility.Collapsed;
+            int index;
+
+            string venue,address,likes,price,contact,category;
+            if (cafeToggle.IsChecked == false)
+            {
+                if (main.SelectedItem == main.Items[1])
+                {
+                    index = cafelist.Items.IndexOf(((sender as MenuItem).DataContext));
+                    venue = App.ViewModel.Items[index].LineOne;
+                    address = App.ViewModel.Items[index].LineTwo;
+                    likes = App.ViewModel.Items[index].LineThree;
+                    price = App.ViewModel.Items[index].Price;
+                    contact = App.ViewModel.Items[index].Contact;
+                    category = "/Assets/coffee.png";
+                }
+                else
+                {
+                    index = barlist.Items.IndexOf(((sender as MenuItem).DataContext));
+                    venue = App.ViewModel.Bar[index].LineOne;
+                    address = App.ViewModel.Bar[index].LineTwo;
+                    likes = App.ViewModel.Bar[index].LineThree;
+                    price = App.ViewModel.Bar[index].Price;
+                    contact = App.ViewModel.Bar[index].Contact;
+                    category = "/Assets/beer.png";
+                }
+            }
+            else
+            {
+                index = barlist.Items.IndexOf(((sender as MenuItem).DataContext));
+                venue = App.ViewModel.Bar[index].LineOne;
+                address = App.ViewModel.Bar[index].LineTwo;
+                likes = App.ViewModel.Bar[index].LineThree;
+                price = App.ViewModel.Bar[index].Price;
+                contact = App.ViewModel.Bar[index].Contact;
+                category = "/Assets/beer.png";
+            }
+            if (Login.appSettings.Contains("user") && Login.appSettings["user"].ToString()!="")
+            {
+                Favorites todoItem = new Favorites { 
+            
+                User = Login.appSettings["user"].ToString(),
+                Venue = venue,
+                Address = address,
+                Likes = likes,
+                Price = price,
+                Contact = contact,
+                Category = category
+            };
+            
+                if (Login.appSettings.Contains("count"))
+                {
+                    int cnt = Convert.ToInt32(Login.appSettings["count"]);
+                    Login.appSettings["count"] = (cnt + 1).ToString();
+                }
+                else
+                {
+                    Login.appSettings.Add("count", "1");
+                }
+            
+                    await Favorites.InsertAsync(todoItem);
+
+                    MessageBox.Show("Succesfully saved!", "Save a venue", MessageBoxButton.OK);
+                    try
+                    {
+                        await App.PersonalizedViewModel.LoadData();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Data cannot be fetched!", "Data Fetch Error", MessageBoxButton.OK);
+                    }
+                }
+            else
+            {
+                this.NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+            }
+            
+         }
+
+        private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (Login.appSettings.Contains("user") && Login.appSettings["user"].ToString() != "")
+            {
+                this.NavigationService.Navigate(new Uri("/Profile.xaml?item=1", UriKind.Relative));
+            }
+            else
+            {
+                this.NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+            }
+        }
+
+
+        private void Image_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (Login.appSettings.Contains("user") && Login.appSettings["user"].ToString() != "")
+            {
+                this.NavigationService.Navigate(new Uri("/Profile.xaml?item=0", UriKind.Relative));
+            }
+            else
+            {
+                this.NavigationService.Navigate(new Uri("/Login.xaml", UriKind.Relative));
+            }
+        }
+
+        private void Image_Tap_2(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/Profile.xaml?item=2", UriKind.Relative));
+        }
+
+        private void Checkin_Click(object sender, RoutedEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/Profile.xaml?item=2", UriKind.Relative));
         }
 
         
