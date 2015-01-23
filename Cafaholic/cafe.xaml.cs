@@ -9,7 +9,6 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Maps;
 using System.Device.Location;
-using Nokia.Phone.HereLaunchers;
 using Microsoft.Phone.Maps.Controls;
 using System.Windows.Shapes;
 using System.Windows.Media;
@@ -174,6 +173,13 @@ namespace Cafaholic
 
             this.addr_tb.Height = desiredHeight; // ActualHeight will be changed if the text is too big, after the text was resized, but in the end you want the box to be as big as the desiredHeight.
 
+        }
+
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var venue_id = PhoneApplicationService.Current.State["id"];
+            var foursquare = new Uri("foursquare://venues/" + venue_id.ToString());
+            await Windows.System.Launcher.LaunchUriAsync(foursquare);
         }
     }
 

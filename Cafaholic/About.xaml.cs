@@ -38,5 +38,31 @@ namespace Cafaholic
             browse.Uri = uri;
             browse.Show();
         }
+
+        private void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            WebBrowserTask browse = new WebBrowserTask();
+            Uri uri = new Uri("https://facebook.com/cafaholic", UriKind.Absolute);
+            browse.Uri = uri;
+            browse.Show();
+        }
+
+        private void Image_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            WebBrowserTask browse = new WebBrowserTask();
+            Uri uri = new Uri("https://twitter.com/abhishekdepro", UriKind.Absolute);
+            browse.Uri = uri;
+            browse.Show();
+        }
+
+        private void Image_Tap_2(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            EmailComposeTask e1 = new EmailComposeTask();
+            e1.To = "abhishekde@hotmail.com";
+            e1.Cc = "surrealbelongings@outlook.com";
+            e1.Subject = "Feedback on Cafaholic 1.0.0";
+            e1.Body = "Device Name: " + Microsoft.Phone.Info.DeviceStatus.DeviceName;
+            e1.Show();
+        }
     }
 }

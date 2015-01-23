@@ -8,13 +8,13 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Parse;
-using Facebook;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO.IsolatedStorage;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Text;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace Cafaholic
 {
@@ -27,7 +27,7 @@ namespace Cafaholic
             InitializeComponent();
         }
 
-        private async void redirect()
+        /*private async void redirect()
         {
             var fb = new FacebookClient();
             fb.AccessToken = ParseFacebookUtils.AccessToken;
@@ -41,7 +41,7 @@ namespace Cafaholic
 
             user_tb.Text = uname.ToString();
             user.Visibility = Visibility.Collapsed;
-        }
+        }*/
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             user.Visibility = Visibility.Collapsed;
@@ -71,7 +71,9 @@ namespace Cafaholic
         private async void Image_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
 
-
+            Progress.Text = "Logging you in..";
+            Progress.IsIndeterminate = true;
+            Progress.IsVisible = true;
             try
             {
 
@@ -83,29 +85,61 @@ namespace Cafaholic
                 {
                     byte[] p = users[0].Password;
                     string x = Cipher.Decrypt(p);
-                    
+
                     if (x == pass.Password)
                     {
                         appSettings["user"] = user_tb.Text;
                         Login.appSettings["count"] = "0";
+                        Progress.IsVisible = false;
                         this.NavigationService.Navigate(new Uri("/Profile.xaml", UriKind.Relative));
                     }
 
                     else
                     {
-                        MessageBox.Show("Error! Try again!");
+                        ImageBrush img = new ImageBrush { ImageSource = new BitmapImage(new Uri("/Assets/cup.jpg", UriKind.Relative)), Opacity = 1, Stretch = Stretch.UniformToFill };
+                        CustomMessageBox mbox = new CustomMessageBox()
+                        {
+                            Caption = "Error",
+                            Message = "Nope! That username/password seems to be not working.",
+                            Background = img,
+                            LeftButtonContent = "Try Another"
+                        };
+                        mbox.Show();
+                        Progress.IsVisible = false;
                     }
+                }
+                else
+                {
+                    ImageBrush img = new ImageBrush { ImageSource = new BitmapImage(new Uri("/Assets/cup.jpg", UriKind.Relative)), Opacity = 1, Stretch = Stretch.UniformToFill };
+                    CustomMessageBox mbox = new CustomMessageBox()
+                    {
+                        Caption = "Error",
+                        Message = "Nope! That username does not exist.",
+                        Background = img,
+                        LeftButtonContent = "OK"
+                    };
+                    mbox.Show();
+                    Progress.IsVisible = false;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error! Try again!");
+                ImageBrush img = new ImageBrush { ImageSource = new BitmapImage(new Uri("/Assets/cup.jpg", UriKind.Relative)), Opacity = 1, Stretch = Stretch.UniformToFill };
+                CustomMessageBox mbox = new CustomMessageBox()
+                {
+                    Caption = "Error",
+                    Message = "There is something wrong! Don't worry try again!",
+                    Background = img,
+                    LeftButtonContent = "Try Again"
+                };
+                mbox.Show();
+                Progress.IsVisible = false;
             }
 
-            
+
         }
 
-       
+
 
         private void check()
         {
@@ -127,6 +161,9 @@ namespace Cafaholic
 
         private async void Image_Tap_1(object sender, System.Windows.Input.GestureEventArgs e)
         {
+            Progress.Text = "Signing you up! Hold on..";
+            Progress.IsVisible = true;
+            sgup.Visibility = Visibility.Collapsed;
             byte[] result = Cipher.Encrypt(pass.Password);
             if (user_tb.Text != "" && pass.Password != "" && email_tb.Text != "")
             {
@@ -142,7 +179,15 @@ namespace Cafaholic
                         users = await query.ToCollectionAsync();
                         if (users.Count == 1)
                         {
-                            MessageBox.Show("Pick another username!");
+                            ImageBrush img = new ImageBrush { ImageSource = new BitmapImage(new Uri("/Assets/cup.jpg", UriKind.Relative)), Opacity = 1, Stretch = Stretch.UniformToFill };
+                            CustomMessageBox mbox = new CustomMessageBox()
+                            {
+                                Caption = "Duplicate",
+                                Message = "Sorry! That name is already taken. Choose another.",
+                                Background = img,
+                                LeftButtonContent = "Sure"
+                            };
+                            mbox.Show();
                         }
                         else
                         {
@@ -155,17 +200,44 @@ namespace Cafaholic
                             {
                                 Login.appSettings.Add("password", pass.Password);
                             }
-                            MessageBox.Show("You have successfuly signed up!", "Signup Success", MessageBoxButton.OK);
+                            ImageBrush img = new ImageBrush { ImageSource = new BitmapImage(new Uri("/Assets/cup.jpg", UriKind.Relative)), Opacity = 1, Stretch = Stretch.UniformToFill };
+                            CustomMessageBox mbox = new CustomMessageBox()
+                            {
+                                Caption = "Signup Success",
+                                Message = "Voila! Successfully signed up. Now login.",
+                                Background = img,
+                                LeftButtonContent = "Great"
+                            };
+                            mbox.Show(); pass.Password = "";
+                            Progress.IsVisible = false;
                         }
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Error! Try again!");
+                        ImageBrush img = new ImageBrush { ImageSource = new BitmapImage(new Uri("/Assets/cup.jpg", UriKind.Relative)), Opacity = 1, Stretch = Stretch.UniformToFill };
+                        CustomMessageBox mbox = new CustomMessageBox()
+                        {
+                            Caption = "Error",
+                            Message = "Can't log you in!",
+                            Background = img,
+                            LeftButtonContent = "OK"
+                        };
+                        mbox.Show();
+                        Progress.IsVisible = false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Please enter a valid email id!");
+                    ImageBrush img = new ImageBrush { ImageSource = new BitmapImage(new Uri("/Assets/cup.jpg", UriKind.Relative)), Opacity = 1, Stretch = Stretch.UniformToFill };
+                    CustomMessageBox mbox = new CustomMessageBox()
+                    {
+                        Caption = "Error",
+                        Message = "Enter a valid email-id.",
+                        Background = img,
+                        LeftButtonContent = "Sure"
+                    };
+                    mbox.Show();
+                    Progress.IsVisible = false;
                 }
             }
             else
@@ -175,7 +247,7 @@ namespace Cafaholic
                     SolidColorBrush sb = new SolidColorBrush(Colors.Red);
                     user_tb.BorderBrush = sb;
                     user_tb.Focus();
-                    
+
                 }
                 else if (pass.Password == "")
                 {
@@ -189,11 +261,13 @@ namespace Cafaholic
                     email_tb.BorderBrush = sb;
                     email_tb.Focus();
                 }
+                Progress.IsVisible = false;
             }
+            sgup.Visibility = Visibility.Visible;
         }
 
-        
 
-        
+
+
     }
 }

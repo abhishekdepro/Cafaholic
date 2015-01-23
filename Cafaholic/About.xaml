@@ -17,7 +17,7 @@
 
     <Grid x:Name="LayoutRoot">
         <Grid.Background>
-            <ImageBrush Opacity="0.2" Stretch="UniformToFill" ImageSource="/Assets/coffee.jpg"/>
+            <ImageBrush Opacity="0.2" Stretch="UniformToFill" ImageSource="/Assets/cup.jpg"/>
         </Grid.Background>
         <Grid.DataContext>
             <viewModels:CommandSampleViewModel/>
@@ -28,10 +28,10 @@
         </Grid.RowDefinitions>
 
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="PageTitle" Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFF5DEAC"/>
+            <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" x:Name="PageTitle" Text="about" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}" Foreground="#FFF5DEAC"/>
         </StackPanel>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Margin="12,87,12,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -43,33 +43,33 @@
             <StackPanel>
                 <TextBlock  
                     Text="Cafaholic" 
+                    Style="{StaticResource DefaultFontStyle}"
                     Margin="12,0,12,0" 
-                    FontSize="{StaticResource PhoneFontSizeLarge}" 
-                    FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
+                    FontSize="42" 
                     >
                     <TextBlock.Foreground>
-                        <SolidColorBrush Color="#FF8F3400"/>
+                        <SolidColorBrush Color="#FF800023"/>
                     </TextBlock.Foreground>
                 </TextBlock>
                 <TextBlock 
-                    FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
-                    Text="3.0.12.25" 
+                    Style="{StaticResource DefaultFontStyle}"
+                    Text="3 . 1 . 1 . 17" 
                     Margin="12,0,12,0" 
-                    FontSize="{StaticResource PhoneFontSizeNormal}" Foreground="#FFF5DEAC"/>
+                    FontSize="24" Foreground="#FFF5DEAC"/>
             </StackPanel>
 
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
+            <TextBlock Style="{StaticResource DefaultFontStyle}"
                 Grid.Row="1" 
                 Text="Your nearest bar or coffee is just a click away from your Windows Phone."
                 Margin="12,26,12,22" 
                 TextWrapping="Wrap" 
-                Foreground="{StaticResource PhoneSubtleBrush}" FontSize="25" />
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"  Margin="12,238,12,204" Grid.Row="4" Tap="TextBlock_Tap" FontSize="25">
+                Foreground="{StaticResource PhoneSubtleBrush}" FontSize="26" />
+            <TextBlock Style="{StaticResource DefaultFontStyle}"  Margin="10,204,14,238" Grid.Row="4" Tap="TextBlock_Tap" FontSize="26">
             	<Run Text="Feedback/ Technical Support:"/>
             	<LineBreak/>
             	<Run Text="abhishekde@hotmail.com">
             		<Run.Foreground>
-            			<SolidColorBrush Color="#FF8F3400">
+            			<SolidColorBrush Color="#FF800023">
             				<SolidColorBrush.RelativeTransform>
             					<MatrixTransform Matrix="Identity"/>
             				</SolidColorBrush.RelativeTransform>
@@ -81,25 +81,25 @@
             	</Run>
 
             </TextBlock>
-            <StackPanel Grid.Row="4" Margin="12,0,12,50" VerticalAlignment="Bottom">
-                <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
+            <StackPanel Grid.Row="4" Margin="14,0,10,10" VerticalAlignment="Bottom" Height="95">
+                <TextBlock Style="{StaticResource ResourceKey=DefaultFontStyle}"
                     
-                    Text="© Surreal belongings 2014" 
-                    Margin="0,12,0,0" Foreground="#FFF5DEAC" FontSize="25"/>
-                <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
-                    Text="Achieved with Foursquare v2 API" Foreground="#FFF5DEAC" FontSize="25"/>
+            		Text="© Surreal belongings 2014" 
+            		Margin="0,12,0,0" Foreground="#FFF5DEAC" FontSize="26"/>
+                <TextBlock TextWrapping="Wrap" Style="{StaticResource ResourceKey=DefaultFontStyle}"
+            		Text="Achieved with Foursquare v2 API and Microsoft Azure" Foreground="#FFF5DEAC" FontSize="26" Height="56"/>
             </StackPanel>
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
+            <TextBlock Style="{StaticResource DefaultFontStyle}"
             	Grid.Row="4"
-            	Margin="12,26,12,316" 
+            	Margin="10,0,14,310" 
             	TextWrapping="Wrap" Text="Mandatory Disclosure: 
-Cafaholic uses the Foursquare API for collecting data nearby. Location services used in the app are used for better suggestion of bars/cafes. The developer/company does not guarantee accuracy or precision or both about the data." Foreground="#FFF5DEAC" FontSize="25" />
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"  Margin="12,300,12,129" Grid.Row="4" Tap="TextBlock_Tap_1" FontSize="25">
+Cafaholic uses the Foursquare API for collecting data nearby. Location services used in the app are used for better suggestion of bars/cafes. The developer/company does not guarantee accuracy or precision or both about the data." Foreground="#FFF5DEAC" FontSize="26" />
+            <TextBlock TextWrapping="Wrap" Style="{StaticResource DefaultFontStyle}"  Margin="10,266,14,200" Grid.Row="4" Tap="TextBlock_Tap_1" FontSize="26">
             	<Run Text="Developed by:"/>
             	<LineBreak/>
             	<Run Text="Abhishek Dey">
             		<Run.Foreground>
-            			<SolidColorBrush Color="#FF8F3400">
+            			<SolidColorBrush Color="#FF800023">
             				<SolidColorBrush.RelativeTransform>
             					<MatrixTransform Matrix="Identity"/>
             				</SolidColorBrush.RelativeTransform>
@@ -110,6 +110,9 @@ Cafaholic uses the Foursquare API for collecting data nearby. Location services 
             		</Run.Foreground>
             	</Run>
             </TextBlock>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="10,337,0,0" Grid.Row="4" Source="/Assets/fb.png" Tap="Image_Tap"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="154,337,0,0" Grid.Row="4" Source="/Assets/twitter.png" Tap="Image_Tap_1"/>
+            <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="306,337,0,0" Grid.Row="4" Source="/Assets/mail.png" Tap="Image_Tap_2"/>
         </Grid>
     </Grid>
 

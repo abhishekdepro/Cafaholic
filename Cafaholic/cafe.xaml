@@ -14,7 +14,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True"
+    shell:SystemTray.IsVisible="False"
     shell:SystemTray.Opacity="0.3">
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" Opacity="0.3"  IsMenuEnabled="True"  Mode="Minimized" BackgroundColor="Black">
@@ -27,7 +27,7 @@
     </phone:PhoneApplicationPage.ApplicationBar>
     <Grid x:Name="LayoutRoot" Margin="0,-32,0,0">
         <Grid.Background>
-            <ImageBrush Stretch="UniformToFill" ImageSource="/Assets/coffee.jpg" Opacity="0.3"/>
+            <ImageBrush ImageSource="/Assets/cup.jpg" Opacity="0.3" Stretch="UniformToFill"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -42,32 +42,33 @@
         <Grid x:Name="ContentPanel" Margin="12,95,12,0" Grid.RowSpan="2">
             <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Address :" VerticalAlignment="Top" Margin="10,36,0,0" FontSize="26"/>
             <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Hours :" VerticalAlignment="Top" Margin="10,122,0,0" FontSize="26"/>
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Margin="10,292,0,0" FontSize="24"/>
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Margin="10,270,0,0" FontSize="24"/>
             <TextBlock x:Name="addr_tb" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineTwo}" VerticalAlignment="Top" Margin="138,36,0,0" Width="307" Height="81" FontSize="26" SizeChanged="addr_tb_SizeChanged"/>
 
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" TextWrapping="Wrap" Text="{Binding LineThree}" Margin="10,324,323,183" FontSize="50">
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" TextWrapping="Wrap" Text="{Binding LineThree}" Margin="10,302,323,205" FontSize="50">
                 <TextBlock.Foreground>
-                    <SolidColorBrush Color="#FFC54800"/>
+                    <SolidColorBrush Color="#FFF5DEAC"/>
                 </TextBlock.Foreground>
             </TextBlock>
             <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Hours}" VerticalAlignment="Top" Margin="138,122,0,0" Width="307" Height="32" FontSize="26"/>
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" TextWrapping="Wrap" Text="{Binding Rating}" Margin="301,324,10,183" FontSize="50" TextAlignment="Right">
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" TextWrapping="Wrap" Text="{Binding Rating}" Margin="301,302,10,205" FontSize="50" TextAlignment="Right">
                 <TextBlock.Foreground>
-                    <SolidColorBrush Color="#FFC54800"/>
+                    <SolidColorBrush Color="#FFF5DEAC"/>
                 </TextBlock.Foreground>
             </TextBlock>
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Check-ins" VerticalAlignment="Top" Margin="301,292,0,0" FontSize="24" Width="133" TextAlignment="Right"/>
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Price($-$$$)" VerticalAlignment="Top" Margin="138,292,0,0" FontSize="24"/>
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" TextWrapping="Wrap" Text="{Binding Price}" Margin="138,324,160,183" FontSize="50" TextAlignment="Center">
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Check-ins" VerticalAlignment="Top" Margin="313,270,0,0" FontSize="24" Width="133" TextAlignment="Right"/>
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Price($-$$$)" VerticalAlignment="Top" Margin="138,270,0,0" FontSize="24"/>
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" TextWrapping="Wrap" Text="{Binding Price}" Margin="138,302,160,205" FontSize="50" TextAlignment="Center">
                 <TextBlock.Foreground>
-                    <SolidColorBrush Color="#FFC54800"/>
+                    <SolidColorBrush Color="#FF800023"/>
                 </TextBlock.Foreground>
             </TextBlock>
-            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact :" VerticalAlignment="Top" Margin="10,200,0,0" FontSize="30"/>
-            <TextBlock x:Name="caller" Foreground="#FFF5DEAC" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Contact}" VerticalAlignment="Top" Margin="160,200,0,0" Width="285" Height="41" FontSize="30" Tap="caller_Tap"/>
+            <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Contact :" VerticalAlignment="Top" Margin="10,194,0,0" FontSize="30"/>
+            <TextBlock x:Name="caller" Foreground="#FFF5DEAC" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Contact}" VerticalAlignment="Top" Margin="160,194,0,0" Width="285" Height="41" FontSize="30" Tap="caller_Tap"/>
+            <Button Content="View in Foursquare" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="-12,379,-14,0" Width="482" Click="Button_Click" Background="#FF800023" BorderBrush="#FF800023"/>
 
         </Grid>
-        <Controls:Map x:Name="myMap" ColorMode="Light"  LandmarksEnabled="True" CartographicMode="Road" Pitch="45" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,520,0,0" Grid.Row="1" Height="255" Width="458" Loaded="myMap_Loaded" BorderThickness="2" Tap="myMap_Tap">
+        <Controls:Map x:Name="myMap" ColorMode="Light"  LandmarksEnabled="True" CartographicMode="Road" Pitch="45" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,551,0,0" Grid.Row="1" Height="255" Width="458" Loaded="myMap_Loaded" BorderThickness="2" Tap="myMap_Tap">
 
             <toolkit:MapExtensions.Children>
                 <toolkit:Pushpin x:Name="MyPushpin">

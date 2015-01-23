@@ -31,14 +31,14 @@
         <phone:Pivot x:Name="mypivot" Title="">
 
             <phone:Pivot.Background>
-                <ImageBrush Opacity="0.3" Stretch="UniformToFill" ImageSource="/Assets/coffee.jpg"/>
+                <ImageBrush Opacity="0.3" ImageSource="/Assets/cup.jpg" Stretch="UniformToFill"/>
             </phone:Pivot.Background>
             <!--Pivot item one-->
             <phone:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <Grid>
 
-                        <TextBlock Text="{Binding}" Foreground="#FFF5DEAC" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" FontSize="70" />
+                        <TextBlock Text="{Binding}" Foreground="#FFF5DEAC" FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" FontSize="70" />
 
                     </Grid>
                 </DataTemplate>
@@ -46,11 +46,11 @@
             <phone:PivotItem Header="Profile">
                 <Grid>
                     <Image x:Name="Profile_Image" Height="189" VerticalAlignment="Top" Margin="126,10,139,0" Source="/Assets/status.png" Stretch="UniformToFill" Tap="Profile_Image_Tap"/>
-                    <TextBlock x:Name="user_tb" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="35,217,0,0" Width="375" FontSize="30" Text="Abhishek Dey" TextAlignment="Center" SizeChanged="user_tb_SizeChanged" Foreground="#FFF5DEAC"/>
+                    <TextBlock x:Name="user_tb" FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="35,217,0,0" Width="375" FontSize="30" Text="Abhishek Dey" TextAlignment="Center" SizeChanged="user_tb_SizeChanged" Foreground="#FFF5DEAC"/>
                     <Image HorizontalAlignment="Left" Height="118" VerticalAlignment="Top" Width="134" Margin="152,273,0,0" Source="/Assets/Heart.png" Stretch="Fill"/>
-                    <TextBlock x:Name="favs_tb" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="148,391,0,0" Width="138" FontSize="60" Text="{Binding}" TextAlignment="Center" SizeChanged="user_tb_SizeChanged" Foreground="#FFF5DEAC" Height="80"/>
-                    <TextBlock x:Name="user_tb_Copy" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="35,471,0,0" Width="375" FontSize="30" Text="Favorites" TextAlignment="Center" SizeChanged="user_tb_SizeChanged" Foreground="#FFF5DEAC"/>
-                    <TextBlock x:Name="upload" FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="114,-16,0,0" Width="188" FontSize="30" Text="Upload Image" TextAlignment="Center" SizeChanged="user_tb_SizeChanged" Foreground="#FFF5DEAC"/>
+                    <TextBlock x:Name="favs_tb" FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="148,391,0,0" Width="138" FontSize="60" Text="{Binding}" TextAlignment="Center" SizeChanged="user_tb_SizeChanged" Foreground="#FFF5DEAC" Height="80"/>
+                    <TextBlock x:Name="user_tb_Copy" FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="35,471,0,0" Width="375" FontSize="30" Text="Favorites" TextAlignment="Center" SizeChanged="user_tb_SizeChanged" Foreground="#FFF5DEAC"/>
+                    <TextBlock x:Name="upload" FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="114,-16,0,0" Width="188" FontSize="30" Text="Upload Image" TextAlignment="Center" SizeChanged="user_tb_SizeChanged" Foreground="#FFF5DEAC"/>
                 </Grid>
             </phone:PivotItem>
 
@@ -76,14 +76,14 @@
 
                                     </toolkit:ContextMenuService.ContextMenu>
                                     <Grid Width="103">
-                                        <TextBlock  FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Likes}" VerticalAlignment="Top" Height="83" Width="103" FontSize="72" TextAlignment="Center" Foreground="#FF8F3400"/>
-                                        <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        <TextBlock  FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Likes}" VerticalAlignment="Top" Height="83" Width="103" FontSize="72" TextAlignment="Center" Foreground="#FF800023"/>
+                                        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
 
                                     </Grid>
                                     <StackPanel Width="250">
-                                        <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding Venue}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
-                                        <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding Address}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
-                                        <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding Contact}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FFF5DEAC" FontSize="24"/>
+                                        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" Text="{Binding Venue}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
+                                        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" Text="{Binding Address}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" Text="{Binding Contact}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}" Foreground="#FFF5DEAC" FontSize="24"/>
                                     </StackPanel>
                                     <Grid Width="80">
                                         <Image Source="{Binding Category}"></Image>
@@ -99,11 +99,11 @@
             <phone:PivotItem Header="Checkins">
 
                 <Grid>
-                    <Image HorizontalAlignment="Left" Height="222" VerticalAlignment="Top" Width="304" Margin="75,146,0,0" Source="/Assets/Blankmap.png"/>
+                    <Image HorizontalAlignment="Left" Height="222" VerticalAlignment="Top" Width="270" Margin="109,146,0,0" Source="/Assets/Blankmap.png"/>
                     <Image HorizontalAlignment="Left" Height="222" VerticalAlignment="Top" Width="231" Margin="120,22,0,0" Source="/Assets/pushpin.png"/>
-                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata"
-            	Margin="10,347,10,126" 
-            	TextWrapping="Wrap" Text="Oh snap! We have lost the maps of Mordor and y'all know 'One does not simply walk into Mordor'. While we search for the maps you guys go ahead and have a cup of coffee or a pint of beer. We'll be back soon!" Foreground="#FFF5DEAC" FontSize="25" TextAlignment="Center" />
+                    <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab"
+            	Margin="10,373,10,126" 
+            	TextWrapping="Wrap" Text="Oh snap! We have lost the maps of Mordor and y'all know 'One does not simply walk into Mordor'. While we search for the maps you guys go ahead and have a cup of coffee or a pint of beer. We'll be back soon!" Foreground="#FFF5DEAC" FontSize="28" TextAlignment="Center" />
 
                 </Grid>
             </phone:PivotItem>

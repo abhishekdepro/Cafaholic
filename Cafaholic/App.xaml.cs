@@ -17,7 +17,6 @@ using Cafaholic.ViewModels;
 using System.Xml;
 using System.Diagnostics;
 using Parse;
-using Facebook;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO.IsolatedStorage;
@@ -88,13 +87,13 @@ namespace Cafaholic
             
             UnhandledException += Application_UnhandledException;
             ThemeManager.ToDarkTheme();
-            ThemeManager.SetAccentColor(AccentColor.Brown);
+            ThemeManager.SetAccentColor(AccentColor.Magenta);
             // Standard Silverlight initialization
             InitializeComponent();
 
             // Phone-specific initialization
             InitializePhoneApplication();
-
+            
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -141,6 +140,7 @@ namespace Cafaholic
         {
             //Before using any of the ApplicationBuildingBlocks, this class should be initialized with the version of the application.
             ApplicationUsageHelper.Init("3.0");
+
             
 
 
@@ -148,7 +148,7 @@ namespace Cafaholic
 
         // Code to execute when the application is activated (brought to foreground)
         // This code will not execute when the application is first launched
-        private async void Application_Activated(object sender, ActivatedEventArgs e)
+        private void Application_Activated(object sender, ActivatedEventArgs e)
         {
             if (!e.IsApplicationInstancePreserved)
             {
@@ -161,7 +161,7 @@ namespace Cafaholic
             if (!App.ViewModel.IsDataLoaded)
             {
                 App.ViewModel.LoadData();
-                App.PersonalizedViewModel.LoadData();
+                
             }
 
             

@@ -20,7 +20,7 @@
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait"  Orientation="Portrait"
-  shell:SystemTray.IsVisible="True" Background="Black"
+  shell:SystemTray.IsVisible="True" Name="tray" Background="Black"
     shell:SystemTray.Opacity="0.3">
 
     <shell:SystemTray.ProgressIndicator>
@@ -39,50 +39,50 @@
 
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" Background="Transparent">
+    <Grid x:Name="LayoutRoot" Margin="0,-36,0,0" Height="Auto" VerticalAlignment="Stretch">
+        <Grid.Background>
+            <ImageBrush Opacity="0.3" ImageSource="/Assets/cup.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <phone:Panorama Title="cafaholic" TitleTemplate="{StaticResource TitlePanaroma}" HorizontalAlignment="Center" x:Name="main" Foreground="#FFF5DEAC" Margin="0" Height="801" VerticalAlignment="Bottom">
 
-        <phone:Panorama Title="cafaholic☕" HorizontalAlignment="Center" TitleTemplate="{StaticResource TitlePanaroma}" x:Name="main" Foreground="#FFF5DEAC" Height="798" VerticalAlignment="Bottom" Margin="0,-30,0,0">
-            <phone:Panorama.Background>
-                <ImageBrush ImageSource="/Assets/coffee.jpg" Opacity="0.3" Stretch="UniformToFill"/>
-            </phone:Panorama.Background>
 
             <phone:PanoramaItem Header="Settings" HeaderTemplate="{StaticResource MyItemHeaderTemplate}" FontSize="20" FontFamily="/Assets/Font/Quirky Nots.otf#Quirky Nots" Foreground="#FFF5DEAC">
                 <Grid Margin="0,-38,0,0" Width="433">
 
-                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Radius (in kilometers):" VerticalAlignment="Top" Margin="23,21,0,0" Width="356" FontSize="30"/>
+                    <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Radius (in kilometers):" VerticalAlignment="Top" Margin="23,21,0,0" Width="356" FontSize="30"/>
                     <Grid HorizontalAlignment="Left" Height="119" VerticalAlignment="Top" Width="420" Margin="0,47,0,0"/>
-                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="twokm" Content="2 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,64,0,0" GroupName="" Checked="twokm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30"/>
+                    <RadioButton FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" x:Name="twokm" Content="2 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,64,0,0" GroupName="" Checked="twokm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FF800023" FontSize="30"/>
 
-                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="fivekm" Content="5 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="259,64,0,0" GroupName="" Checked="fivekm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30"/>
-                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="barToggle" HorizontalAlignment="Left" Margin="23,225,0,0" VerticalAlignment="Top" Width="364" Content="Turn Bars Off" Checked="barToggle_Checked" Unchecked="barToggle_Unchecked">
+                    <RadioButton FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" x:Name="fivekm" Content="5 Km" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="259,64,0,0" GroupName="" Checked="fivekm_Checked" Foreground="#FFF5DEAC" BorderBrush="#FF800023" FontSize="30"/>
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" x:Name="barToggle" HorizontalAlignment="Left" Margin="23,225,0,0" VerticalAlignment="Top" Width="364" Content="Turn Bars Off" Checked="barToggle_Checked" Unchecked="barToggle_Unchecked">
                         <telerikPrimitives:RadToggleSwitch.ButtonStyle>
                             <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
-                                <Setter Property="CheckBackground" Value="#FF8F3400"/>
+                                <Setter Property="CheckBackground" Value="#FF800023"/>
                             </Style>
                         </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="cafeToggle" HorizontalAlignment="Left" Margin="23,289,0,0" VerticalAlignment="Top" Width="364" Content="Turn Cafes Off" Checked="cafeToggle_Checked" Unchecked="cafeToggle_Unchecked">
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" x:Name="cafeToggle" HorizontalAlignment="Left" Margin="23,289,0,0" VerticalAlignment="Top" Width="364" Content="Turn Cafes Off" Checked="cafeToggle_Checked" Unchecked="cafeToggle_Unchecked">
                         <telerikPrimitives:RadToggleSwitch.ButtonStyle>
                             <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
-                                <Setter Property="CheckBackground" Value="#FF8F3400"/>
+                                <Setter Property="CheckBackground" Value="#FF800023"/>
                             </Style>
                         </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="locationToggle" HorizontalAlignment="Left" Margin="23,358,0,0" VerticalAlignment="Top" Width="364" Content="Location" Checked="locationToggle_Checked" Unchecked="locationToggle_Unchecked">
+                    <telerikPrimitives:RadToggleSwitch FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" x:Name="locationToggle" HorizontalAlignment="Left" Margin="23,358,0,0" VerticalAlignment="Top" Width="364" Content="Location" Checked="locationToggle_Checked" Unchecked="locationToggle_Unchecked">
                         <telerikPrimitives:RadToggleSwitch.ButtonStyle>
                             <Style TargetType="telerikToggleSwitch:ToggleSwitchButton">
-                                <Setter Property="CheckBackground" Value="#FF8F3400"/>
+                                <Setter Property="CheckBackground" Value="#FF800023"/>
                             </Style>
                         </telerikPrimitives:RadToggleSwitch.ButtonStyle>
                     </telerikPrimitives:RadToggleSwitch>
-                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="23,426,0,0" Source="/Assets/favs.png" Tap="Image_Tap"/>
-                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="111" Margin="157,426,0,0" Source="/Assets/status.png" Tap="Image_Tap_1" RenderTransformOrigin="0.579,0.482" Stretch="Fill"/>
-                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="287,426,0,0" Source="/Assets/pushpin.png" Tap="Image_Tap_2"/>
-                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Favorites" VerticalAlignment="Top" Width="100" Margin="23,526,0,0" TextAlignment="Center"/>
-                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="99" Margin="157,526,0,0" TextAlignment="Center"/>
-                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Checkins" VerticalAlignment="Top" Width="100" Margin="287,526,0,0" TextAlignment="Center"/>
-                    <RadioButton FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" x:Name="any" Content="Anywhere nearby" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,123,0,0" GroupName="" Checked="any_Checked" Foreground="#FFF5DEAC" BorderBrush="#FFE65400" FontSize="30" Width="356"/>
-
+                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="23,407,0,0" Source="/Assets/favs.png" Tap="Image_Tap"/>
+                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="111" Margin="157,407,0,0" Source="/Assets/status.png" Tap="Image_Tap_1" RenderTransformOrigin="0.579,0.482" Stretch="Fill"/>
+                    <Image HorizontalAlignment="Left" Height="100" VerticalAlignment="Top" Width="100" Margin="287,407,0,0" Source="/Assets/pushpin.png" Tap="Image_Tap_2"/>
+                    <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Favorites" VerticalAlignment="Top" Width="100" Margin="23,489,0,0" TextAlignment="Center" FontSize="24"/>
+                    <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="99" Margin="157,489,0,0" TextAlignment="Center" FontSize="24"/>
+                    <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" Height="37" TextWrapping="Wrap" Text="Checkins" VerticalAlignment="Top" Width="100" Margin="287,489,0,0" TextAlignment="Center" FontSize="24"/>
+                    <RadioButton FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" x:Name="any" Content="Anywhere nearby" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,123,0,0" GroupName="" Checked="any_Checked" Foreground="#FFF5DEAC" BorderBrush="#FF800023" FontSize="30" Width="356"/>
+                    <TextBlock VerticalAlignment="Center" FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Having Trouble? Click here" Margin="23,557,0,19" Width="298" FontSize="24" Height="41" Foreground="#FFF5DEAC" Tap="TextBlock_Tap"/>
 
 
 
@@ -102,7 +102,7 @@
                 <ListBox  x:Name="cafelist" Margin="0,0,-12,0" ItemsSource="{Binding Items}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,17" Tap="StackPanel_Tap">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,17" >
 
                                 <!--StackPanel.Background>
                                     <SolidColorBrush Color="Black" Opacity="0.5"/>
@@ -121,14 +121,22 @@
 
 
                                 <Grid Width="103">
-                                    <TextBlock  FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="83" Width="103" FontSize="72" TextAlignment="Center" Foreground="#FF8F3400"/>
-                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock  FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="73" Width="103" FontSize="72" TextAlignment="Center" Foreground="#FF800023" Margin="0,10,0,0"/>
+                                    <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="38" Width="65" Margin="28,83,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
 
                                 </Grid>
                                 <StackPanel Width="311">
-                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
-                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <StackPanel Tap="StackPanel_Tap">
+                                        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
+                                        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
 
+                                    </StackPanel>
+                                    <Grid Height="50">
+                                        <Image HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="52" Margin="41,0,0,0" Source="/Assets/favring.png" Tap="fav_star_Tap"/>
+                                        <Image HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="60" Margin="121,0,0,0" Source="/Assets/pushring.png" Tap="Image_Tap_2" />
+                                        <Image HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="51" Margin="201,0,0,0" Source="/Assets/Next.png" Tap="StackPanel_Tap"/>
+
+                                    </Grid>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>
@@ -143,7 +151,7 @@
                 <ListBox x:Name="barlist" Margin="0,0,-12,0" ItemsSource="{Binding Bar}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="0,0,0,17" Tap="StackPanel_Tap">
+                            <StackPanel Orientation="Horizontal" Margin="0,0,0,17" >
                                 <!--Replace rectangle with image-->
                                 <!--StackPanel.Background>
                                     <SolidColorBrush Color="Black" Opacity="0.5"/>
@@ -159,13 +167,21 @@
 
                                 </toolkit:ContextMenuService.ContextMenu>
                                 <Grid Width="103">
-                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="96" Width="103" FontSize="72" Margin="0,-13,0,0" TextAlignment="Center" Foreground="#FF8F3400"/>
-                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="35" Width="65" Margin="28,70,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <TextBlock  FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding LineThree}" VerticalAlignment="Top" Height="73" Width="103" FontSize="72" TextAlignment="Center" Foreground="#FF800023" Margin="0,10,0,0"/>
+                                    <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Likes" VerticalAlignment="Top" Height="38" Width="65" Margin="28,83,0,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
 
                                 </Grid>
                                 <StackPanel Width="311">
-                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
-                                    <TextBlock FontFamily="/Assets/Font/Inconsolata-Regular.ttf#Inconsolata" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    <StackPanel Tap="StackPanel_Tap">
+                                        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" Text="{Binding LineOne}" TextWrapping="Wrap" Style="{StaticResource PhoneTextExtraLargeStyle}" Foreground="#FFF5DEAC"/>
+                                        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="12,-6,12,0" Style="{StaticResource PhoneTextSubtleStyle}"/>
+                                    </StackPanel>
+                                    <Grid Height="50">
+                                        <Image HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="52" Margin="41,0,0,0" Source="/Assets/favring.png" Tap="fav_star_Tap"/>
+                                        <Image HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="60" Margin="121,0,0,0" Source="/Assets/pushring.png" Tap="Image_Tap_2" />
+                                        <Image HorizontalAlignment="Left" Height="50" VerticalAlignment="Top" Width="51" Margin="201,0,0,0" Source="/Assets/Next.png" Tap="StackPanel_Tap"/>
+
+                                    </Grid>
                                 </StackPanel>
                             </StackPanel>
                         </DataTemplate>

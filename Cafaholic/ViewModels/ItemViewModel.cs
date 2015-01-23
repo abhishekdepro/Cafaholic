@@ -196,6 +196,23 @@ namespace Cafaholic.ViewModels
             }
         }
 
+        private string _id;
+        public string Id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (value != _id)
+                {
+                    _id = value;
+                    NotifyPropertyChanged("Id");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         private string _price;
 
