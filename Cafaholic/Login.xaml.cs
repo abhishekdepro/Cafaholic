@@ -165,7 +165,7 @@ namespace Cafaholic
             Progress.IsVisible = true;
             sgup.Visibility = Visibility.Collapsed;
             byte[] result = Cipher.Encrypt(pass.Password);
-            if (user_tb.Text != "" && pass.Password != "" && email_tb.Text != "")
+            if (email_tb.Text != "" && pass.Password != "" && email_tb.Text != "")
             {
                 if (email_tb.Text.Contains("@"))
                 {
@@ -264,6 +264,11 @@ namespace Cafaholic
                 Progress.IsVisible = false;
             }
             sgup.Visibility = Visibility.Visible;
+        }
+
+        private void Image_Tap_2(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/FacebookLoginPage.xaml", UriKind.Relative));
         }
 
 

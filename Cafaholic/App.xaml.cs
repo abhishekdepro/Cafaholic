@@ -21,6 +21,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.IO.IsolatedStorage;
 using Microsoft.WindowsAzure.MobileServices;
+using Facebook.Client;
 
 namespace Cafaholic
 {
@@ -29,6 +30,10 @@ namespace Cafaholic
         private static MainViewModel viewModel = null;
         private static PersonalizationViewModel fav = null;
         public static IsolatedStorageSettings appSettings = IsolatedStorageSettings.ApplicationSettings;
+        internal static string AccessToken = String.Empty;
+        internal static string FacebookId = String.Empty;
+        public static bool isAuthenticated = false;
+        public static FacebookSessionClient FacebookSessionClient = new FacebookSessionClient("339023869615738");
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>

@@ -15,12 +15,15 @@ using System.IO.IsolatedStorage;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows.Media;
+using Facebook;
+using System.Windows.Resources;
 
 namespace Cafaholic
 {
 	public partial class Profile : PhoneApplicationPage
 	{
 		private IMobileServiceTable<Favorites> Favorites = App.MobileService.GetTable<Favorites>();
+		private IMobileServiceTable<User> Users = App.MobileService.GetTable<User>();
 		public Profile()
 		{
 			InitializeComponent();
@@ -39,13 +42,22 @@ namespace Cafaholic
 			base.OnNavigatedTo(e);
 			Progress.IsVisible = true;
 			Progress.IsIndeterminate = true;
+			if (NavigationContext.QueryString.ContainsKey("fb"))
+			{
+				LoadUserInfo();
+
+			}
+			else
+			{
+				user_tb.Text = Login.appSettings["user"].ToString();
+			}
 			if (Login.appSettings.Contains("photo"))
 			{
 				upload.Visibility = Visibility.Collapsed;
 			}
 			await App.PersonalizedViewModel.LoadData();
 
-			user_tb.Text = Login.appSettings["user"].ToString();
+			
 			if (Login.appSettings.Contains("count"))
 			{
 				favs_tb.Text = Login.appSettings["count"].ToString();
@@ -54,6 +66,7 @@ namespace Cafaholic
 			{
 				favs_tb.Text = "0";
 			}
+			
 
 			if (NavigationContext.QueryString.ContainsKey("item"))
 			{
@@ -95,7 +108,79 @@ namespace Cafaholic
 		{
 			await Favorites.DeleteAsync(f);
 		}
+		public MobileServiceCollection<User, User> users { get; private set; }
+		private void LoadUserInfo()
+		{
+			var fb = new FacebookClient(App.AccessToken);
 
+			fb.GetCompleted += (o, e) =>
+			{
+				if (e.Error != null)
+				{
+					Dispatcher.BeginInvoke(() => MessageBox.Show(e.Error.Message));
+					return;
+				}
+
+				var result = (IDictionary<string, object>)e.GetResultData();
+
+				Dispatcher.BeginInvoke(async () =>
+				{
+					var profilePictureUrl = string.Format("https://graph.facebook.com/{0}/picture?type={1}&access_token={2}", App.FacebookId, "large", App.AccessToken);
+
+					this.Profile_Image.Source = new BitmapImage(new Uri(profilePictureUrl));
+					this.user_tb.Text = String.Format("{0} {1}", (string)result["first_name"], (string)result["last_name"]);
+					var email = result["email"];
+
+					if (Login.appSettings.Contains("user")) {
+						Login.appSettings["user"] = email.ToString();
+					}
+					else
+						Login.appSettings.Add("user", email.ToString());
+					User newuser = new User { Username = email.ToString(), Email = email.ToString() };
+					IMobileServiceTableQuery<User> query = Users
+			  .Where(todoItem => todoItem.Username == email.ToString());
+
+				users = await query.ToCollectionAsync();
+				if (users.Count == 0)
+				{
+
+
+					await Users.InsertAsync(newuser);
+					
+				}
+				upload.Visibility = Visibility.Collapsed;
+				WebClient client = new WebClient();
+				client.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
+				client.OpenReadAsync(new Uri(profilePictureUrl.ToString()), client);
+				});
+			};
+
+			fb.GetTaskAsync("me");
+		}
+		IsolatedStorageFile MyStore = IsolatedStorageFile.GetUserStoreForApplication();
+
+		private void client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
+		{
+			var resInfo = new StreamResourceInfo(e.Result, null);
+			var reader = new StreamReader(resInfo.Stream);
+			byte[] contents;
+			using (BinaryReader bReader = new BinaryReader(reader.BaseStream))
+			{
+				contents = bReader.ReadBytes((int)reader.BaseStream.Length);
+			}
+			IsolatedStorageFileStream stream = MyStore.CreateFile("image.jpg");
+			stream.Write(contents, 0, contents.Length);
+			stream.Close();
+			if (Login.appSettings.Contains("photo"))
+			{
+				Login.appSettings.Remove("photo");
+				Login.appSettings.Add("photo", "yes");
+			}
+			else
+			{
+				Login.appSettings.Add("photo", "yes");
+			}
+		}
 		private void user_tb_SizeChanged(object sender, SizeChangedEventArgs e)
 		{
 			double desiredHeight = 80;
@@ -188,11 +273,12 @@ namespace Cafaholic
 				using (IsolatedStorageFileStream fileStream = myIsolatedStorage.OpenFile(tempJPEG, FileMode.Open, FileAccess.Read))
 				{
 					bi.SetSource(fileStream);
-					//this.Profile_Image.Height = bi.PixelHeight;
-					//this.Profile_Image.Width = bi.PixelWidth;
+					this.Profile_Image.Height = 190;
+					this.Profile_Image.Width = 190;
 				}
 			}
 			this.Profile_Image.Source = bi;
+			
 			this.Profile_Image.Stretch = System.Windows.Media.Stretch.Fill;
 		}
 

@@ -30,23 +30,25 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,10,12,0">
-            <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" FontSize="72" Margin="134,189,142,0" Foreground="#FFF5DEAC"/>
+            <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" FontSize="72" Margin="135,93,141,0" Foreground="#FFF5DEAC"/>
             <Grid HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="61" Margin="10,406,0,0"/>
-            <Image HorizontalAlignment="Left" Height="62" VerticalAlignment="Top" Width="68" Margin="279,598,0,0" Source="/Assets/Next.png" Tap="Image_Tap"/>
+            <Image HorizontalAlignment="Left" Height="62" VerticalAlignment="Top" Width="68" Margin="280,491,0,0" Source="/Assets/Next.png" Tap="Image_Tap"/>
             <phone:WebBrowser x:Name="browser" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,23,0,0" Height="788" Width="456" Visibility="Collapsed"/>
-            <Image x:Name="sgup" HorizontalAlignment="Left" Height="62" VerticalAlignment="Top" Width="68" Margin="279,681,0,0" Source="/Assets/Next.png" Tap="Image_Tap_1"/>
+            <Image x:Name="sgup" HorizontalAlignment="Left" Height="62" VerticalAlignment="Top" Width="68" Margin="280,574,0,0" Source="/Assets/Next.png" Tap="Image_Tap_1"/>
+            <Image HorizontalAlignment="Left" Height="110" VerticalAlignment="Top" Width="113" Margin="176,679,0,0" Source="/Assets/fb.png" Tap="Image_Tap_2"/>
 
         </Grid>
-        <TextBox x:Name="user_tb" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="458" Margin="12,366,0,0" Grid.Row="1" Foreground="#FF800023" Opacity="0.8" GotFocus="TextBox_GotFocus" LostFocus="user_tb_LostFocus"/>
-        <Image x:Name="user" HorizontalAlignment="Left" Height="42" Grid.RowSpan="2" VerticalAlignment="Top" Width="49" Margin="25,383,0,0" Source="/Assets/user.png"/>
-        <PasswordBox x:Name="pass" GotFocus="pass_tb_GotFocus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,430,0,0" Grid.Row="1" Width="458" Opacity="0.8" LostFocus="pass_LostFocus" Foreground="#FF800023"/>
-        <Image x:Name="password" HorizontalAlignment="Left" Height="42" Grid.RowSpan="2" VerticalAlignment="Top" Width="49" Margin="25,443,0,0" Source="/Assets/password.png"/>
-        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Margin="155,620,0,0" Grid.Row="1" Foreground="#FFF5DEAC" TextAlignment="Center" FontSize="40" Height="48" Width="108"/>
-        <TextBox x:Name="email_tb" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Margin="12,521,0,0" Grid.Row="1" Foreground="#FF800023" Opacity="0.8" GotFocus="email_tb_GotFocus" LostFocus="email_tb_LostFocus" InputScope="EmailSmtpAddress"/>
-        <Image x:Name="email" HorizontalAlignment="Left" Height="42" Grid.RowSpan="2" VerticalAlignment="Top" Width="49" Margin="25,534,0,0" Source="/Assets/email.png" Stretch="None"/>
-        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="SignUp" VerticalAlignment="Top" Margin="128,705,0,0" Grid.Row="1" Foreground="#FFF5DEAC" TextAlignment="Center" FontSize="40" Height="58" Width="135"/>
-        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email Id :" VerticalAlignment="Top" Margin="25,502,0,0" Grid.Row="1" Foreground="#FFF5DEAC" FontSize="24" Height="32" Width="188"/>
-        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username and Password :" VerticalAlignment="Top" Margin="25,344,0,0" Grid.Row="1" Foreground="#FFF5DEAC" FontSize="24" Height="32" Width="288"/>
+        <TextBox x:Name="user_tb" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="458" Margin="12,259,0,0" Grid.Row="1" Foreground="#FF800023" Opacity="0.8" GotFocus="TextBox_GotFocus" LostFocus="user_tb_LostFocus" InputScope="Default"/>
+        <Image x:Name="user" HorizontalAlignment="Left" Height="42" Grid.RowSpan="2" VerticalAlignment="Top" Width="49" Margin="25,276,0,0" Source="/Assets/user.png"/>
+        <PasswordBox x:Name="pass" GotFocus="pass_tb_GotFocus" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="12,323,0,0" Grid.Row="1" Width="458" Opacity="0.8" LostFocus="pass_LostFocus" Foreground="#FF800023"/>
+        <Image x:Name="password" HorizontalAlignment="Left" Height="42" Grid.RowSpan="2" VerticalAlignment="Top" Width="49" Margin="25,336,0,0" Source="/Assets/password.png"/>
+        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Margin="164,508,0,0" Grid.Row="1" Foreground="#FFF5DEAC" TextAlignment="Center" FontSize="40" Height="48" Width="108"/>
+        <TextBox x:Name="email_tb" HorizontalAlignment="Left" Height="72" TextWrapping="Wrap" VerticalAlignment="Top" Width="456" Margin="12,413,0,0" Grid.Row="1" Foreground="#FF800023" Opacity="0.8" GotFocus="email_tb_GotFocus" LostFocus="email_tb_LostFocus" InputScope="EmailSmtpAddress"/>
+        <Image x:Name="email" HorizontalAlignment="Left" Height="42" Grid.RowSpan="2" VerticalAlignment="Top" Width="49" Margin="25,426,0,0" Source="/Assets/email.png" Stretch="None"/>
+        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="SignUp" VerticalAlignment="Top" Margin="137,593,0,0" Grid.Row="1" Foreground="#FFF5DEAC" TextAlignment="Center" FontSize="40" Height="58" Width="135"/>
+        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Email Id :" VerticalAlignment="Top" Margin="25,394,0,0" Grid.Row="1" Foreground="#FFF5DEAC" FontSize="24" Height="32" Width="188"/>
+        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="Username and Password :" VerticalAlignment="Top" Margin="25,237,0,0" Grid.Row="1" Foreground="#FFF5DEAC" FontSize="24" Height="32" Width="288"/>
+        <TextBlock FontFamily="/Assets/Font/JosefinSlab-Regular.ttf#Josefin Slab" HorizontalAlignment="Left" TextWrapping="Wrap" Text="OR" VerticalAlignment="Top" Margin="149,671,0,0" Grid.Row="1" Foreground="#FFF5DEAC" FontSize="24" Height="32" Width="188" TextAlignment="Center"/>
     </Grid>
 
 </phone:PhoneApplicationPage>

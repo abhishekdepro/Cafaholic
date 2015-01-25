@@ -51,7 +51,7 @@ namespace Cafaholic.ViewModels
         /// </summary>
         public async Task LoadData()
         {
-           // if (Convert.ToInt32(Login.appSettings["count"]) > 0)
+           if (Login.appSettings.Contains("user"))
             {
                 IMobileServiceTableQuery<Favorites> query = Favorites
                        .Where(todoItem => todoItem.User == Login.appSettings["user"].ToString());

@@ -147,11 +147,7 @@ namespace Cafaholic
 		{
 			NavigationService.RemoveBackEntry();
 
-			if (e.NavigationMode == NavigationMode.New)
-			{
-				var storageFile = await Windows.Storage.StorageFile.GetFileFromApplicationUriAsync(new Uri("ms-appx:///VoiceCommands.xml"));
-				await Windows.Media.SpeechRecognition.VoiceCommandManager.InstallCommandSetsFromStorageFileAsync(storageFile);
-			}
+			
 			/*if (NavigationService.BackStack.Any())
 			{
 				var length = NavigationService.BackStack.Count() - 1;
