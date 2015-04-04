@@ -9,7 +9,13 @@ html {
   font-family: 'Josefin Slab', sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
+  background: url(cofee.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
+
 
 #links:hover { color: green; }
 
@@ -277,8 +283,8 @@ body {
   font-family: 'Josefin Slab', sans-serif;
   font-size: 14px;
   line-height: 1.42857143;
-  color: #333333;
-  background-color: #ffffff;
+  color: #000;
+  background-color: rgba(0,0,0,0.0);
 }
 input,
 button,
@@ -339,7 +345,7 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 1px solid #eeeeee;
+  border-top: 1px solid #000;
 }
 .sr-only {
   position: absolute;
@@ -770,6 +776,7 @@ pre code {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+  
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
   float: left;
@@ -3788,8 +3795,8 @@ a.list-group-item.active > .badge,
   padding: 4px;
   margin-bottom: 20px;
   line-height: 1.42857143;
-  background-color: #ffffff;
-  border: 1px solid #ffffff;
+  background-color: rgba(0,0,0,0.0);
+  border: 1px solid rgba(0,0,0,0.0);
   border-radius: 3px;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
