@@ -10,7 +10,7 @@ html {
   font-weight: 600;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-  background: url(giphy.jpg) no-repeat center center fixed; 
+  background: url(coffee.gif) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -50,7 +50,6 @@ div.con:before{
 
 body {
   margin: 0;
-  
 }
 article,
 aside,
