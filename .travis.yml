@@ -1,7 +1,7 @@
 language: csharp
 solution: Cafaholic.sln
 script:
-  - ./build.sh
+  - xbuild Cafaholic.csproj
   - grep "Test Results" build.log
 install:
   - nuget restore Cafaholic.sln
