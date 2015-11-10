@@ -1,0 +1,5 @@
+language: csharp
+solution: Cafaholic.sln
+script:    # the following commands are just examples, use whatever your build process requires
+  - ./build.sh
+  - grep "Test Results" build.log
